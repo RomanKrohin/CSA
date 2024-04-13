@@ -1,0 +1,15 @@
+start:
+$$Начало$$
+    push 1
+    pop
+    add 10
+    load 1
+    jif > test1 test1
+
+test1:
+$$Начало$$
+    push 1
+    pop
+    add 10
+    load 1
+    
