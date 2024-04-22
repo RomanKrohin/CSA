@@ -46,18 +46,28 @@ def hexcode(number : int ) -> dict:
     hexadecimal = "{:04x}".format(number)
     return hexadecimal
 
+def remove_all_comments(string_with_comments: str) -> str:
+    return str(re.sub(r'\$\$[\s\S]*\$\$','',string_with_comments.strip()))
+
+def remove_all_newline(string_with_newline: str) -> str:
+    return str(re.sub(r'\n','',string_with_newline.strip()))
+
+def validate_label(string_without_newline_comments: str) -> None:
+    patterns = [".", "@", " "]
+    labels_dyn.append((string_without_newline_comments.replace(":", "")).replace("@ ", "").strip())
+    assert all(substring not in labels_dyn[-1] for substring in patterns) and not labels_dyn[-1].isnumeric(), "Говно а не лейбл"
+    if labels.get(labels_dyn[-1])==None: 
+        labels[labels_dyn[-1]]=hexcode(len(labels)+1)
+
 
 def run(file) -> str:
     with open(file, "r") as f:
         prgrm = f.readlines()
         for line in prgrm:
-            line_without_comments = str(re.sub(r'\$\$[\s\S]*\$\$','',line.strip()))
-            string_without_newline_comments = str(re.sub(r'\n','',line_without_comments.strip()))
+            string_without_newline_comments = remove_all_newline(remove_all_comments(line))
             if (string_without_newline_comments.strip()!=""):
-                if (re.fullmatch(r"[\s\S]*\:", string_without_newline_comments)):
-                    labels_dyn.append(string_without_newline_comments.replace(":", ""))
-                    if labels.get(labels_dyn[-1])==None: 
-                        labels[labels_dyn[-1]]=hexcode(len(labels)+1)
+                if (re.fullmatch(r"@ [\s\S]*\:", string_without_newline_comments)):
+                    validate_label(string_without_newline_comments)
                     machine_code[labels.get(labels_dyn[-1])]=[]
                 else:
                     machine_code.get(labels.get(labels_dyn[-1])).append(split_argument_command(string_without_newline_comments))

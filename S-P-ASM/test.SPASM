@@ -1,4 +1,4 @@
-start:
+@ start:
 $$Начало$$
     push 1
     pop
@@ -6,7 +6,7 @@ $$Начало$$
     load 1
     jif > test1 test1
 
-test1:
+@ test1:
 $$Начало$$
     push 1
     pop
