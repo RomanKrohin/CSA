@@ -1,4 +1,4 @@
-def to_binary(machine_code: dict) -> bytes:
+def to_binary(machine_code: dict, file: str) -> bytes:
     binary_code = b""
     for label in machine_code.keys():
         block = b""
@@ -10,6 +10,8 @@ def to_binary(machine_code: dict) -> bytes:
             block += int(instruction[3],16).to_bytes(2,"big")
         block+=b"\0\0\0\0\0"
         binary_code+=block
+    with open(file, "wb") as f:
+        f.write(binary_code)
     return binary_code
 
 def from_binary(binary_code: bytes) -> dict:

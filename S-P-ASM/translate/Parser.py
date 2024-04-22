@@ -12,7 +12,6 @@ signes = {
     "<": '0xbb8',
 }
 
-
 dynamic_names = {}
 
 machine_code = {}
@@ -57,8 +56,7 @@ def validate_label(string_without_newline_comments: str) -> None:
     if labels.get(labels_dyn[-1])==None: 
         labels[labels_dyn[-1]]=hex(len(labels)+1)
 
-
-def run(file) -> str:
+def run(file: str) -> str:
     with open(file, "r") as f:
         prgrm = f.readlines()
         for line in prgrm:
@@ -69,11 +67,8 @@ def run(file) -> str:
                     machine_code[labels.get(labels_dyn[-1])]=[]
                 else:
                     machine_code.get(labels.get(labels_dyn[-1])).append(split_argument_command(string_without_newline_comments))
-    print(machine_code)
     return machine_code
-                
-                
-                            
+                                         
 def split_argument_command(command_argument) -> []:
     command_argument_list = command_argument.split(" ")
     return ([commands[command_argument_list[0]]["code"], commands[command_argument_list[0]]["processor"](command_argument_list[1:])[0],
