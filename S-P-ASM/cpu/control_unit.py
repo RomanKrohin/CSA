@@ -24,7 +24,14 @@ def jmp(self, arg: []):
             self.stack_inscrutions.data = [ _ ] + self.stack_inscrutions.data
     
 def jif(self, arg: []):
-    self.stack_memory.pop()
+    self.ALU.compare(int(self.stack_memory.peek()), int(arg[2], 16), arg[1])
+    if self.ALU.result==1:
+        self.stack_inscrutions.data.clear()
+        self.stack_inscrutions.pop()
+        for _ in self.instruction_memory.data[arg[3]]:
+                self.stack_inscrutions.data = [ _ ] + self.stack_inscrutions.data
+    else:
+        self.stack_inscrutions.pop()
 
 class Control_unit:
              
@@ -39,7 +46,7 @@ class Control_unit:
         "0x64": add, 
         "0xc8": pop, 
         "0x12c": push, 
-        "0x190": "1", 
+        "0x190": jif, 
         "0x2bc": jmp,
         "0x420": "1"}
         

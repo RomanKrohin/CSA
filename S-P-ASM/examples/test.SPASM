@@ -2,7 +2,7 @@
 $$Начало$$
     push 1
     push 2
-    jmp label1 
+    jif > 1 label1 
     push 3
 
 @ label1:
