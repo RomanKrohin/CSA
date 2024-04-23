@@ -12,8 +12,9 @@ class Stack:
     def push(self, item: str):
         self.data.append(item)
         
-    def pop(self, item: str):
-        del self.data[-1]
+    def pop(self):
+        if (len(self.data)>0):
+            del self.data[-1]
         
     def peek(self) -> str:
         return self.data[-1]
