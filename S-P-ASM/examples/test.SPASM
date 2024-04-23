@@ -1,9 +1,4 @@
 @ start:
 $$Начало$$
-    push 1
-    push 2
-    jif > 1 label1 
-    push 3
-
-@ label1:
-    push 4
+    set_var a 1
+    set_var b 2

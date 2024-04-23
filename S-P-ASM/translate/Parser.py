@@ -37,7 +37,7 @@ def one_argument(arguments : []) -> []:
 
 def set_var_argument(arguments : []) -> []:
     variables[arguments[0]] = hex(len(variables.keys())*20+500)
-    return [hex(len(variables.keys())*20+500), hex(int(arguments[1])), hex(0)]
+    return [hex(len(variables.keys())*20), hex(int(arguments[1])), hex(0)]
 
 def var_argument(arguments : []) -> []:
     return [variables.get(arguments[0]), hex(0), hex(0)]

@@ -10,6 +10,6 @@ def load_binary_code (file: str):
     control_unit = Control_unit()
     instr_memory = Memory()
     instr_memory.data= from_binary(all_binary_code)
-    control_unit.connect_data_structures(instr_memory, Memory(), Stack(), Stack())
+    control_unit.connect_data_structures(instr_memory, Stack(), Stack())
     control_unit.process()
     
