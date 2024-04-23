@@ -3,6 +3,10 @@ from structures_of_data.stack import Stack
 
 class Control_unit:
     
+    commands = {
+        
+    }
+    
     def __init__(self) -> None:
         self.instruction_memory = None
         self.data_memory = None
