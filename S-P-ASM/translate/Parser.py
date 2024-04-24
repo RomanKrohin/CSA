@@ -35,6 +35,11 @@ def jmp_arguments(arguments : []) -> []:
 def one_argument(arguments : []) -> []:
     return [hex(int(arguments[0])), hex(0), hex(0)]
 
+def var_or_int_argument(arguments : []) -> []:
+    if (re.match(r"\d+", arguments[0])):
+        return [hex(int(arguments[0])), hex(0), hex(0)]
+    return [variables[arguments[0]], hex(1), hex(0)]
+
 def set_var_argument(arguments : []) -> []:
     variables[arguments[0]] = hex(len(variables.keys())*20+500)
     return [hex(len(variables.keys())*20), hex(int(arguments[1])), hex(0)]
@@ -48,8 +53,8 @@ def four_arguments(arguments : []) -> []:
 commands = {
         "add": {"code" : '0x64' , "processor": one_argument}, 
         "pop": {"code" : '0xc8' , "processor": zero_arguments}, 
-        "push": {"code" : '0x12c' , "processor": one_argument}, 
-        "load": {"code" : '0x420' , "processor": one_argument}, 
+        "push": {"code" : '0x12c' , "processor": var_or_int_argument}, 
+        "load": {"code" : '0x420' , "processor": var_or_int_argument}, 
         "jif": {"code" : '0x190' , "processor": four_arguments}, 
         "jmp": {"code" : '0x2bc' , "processor": jmp_arguments},
         "set_var": {"code" : '0x420' , "processor": set_var_argument}}

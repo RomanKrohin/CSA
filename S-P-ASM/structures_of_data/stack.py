@@ -10,6 +10,7 @@ class Stack:
         return str(self)
     
     def push(self, item: str):
+        assert not self.size()>256, "Stack overflow"
         self.data.append(item)
         
     def pop(self):

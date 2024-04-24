@@ -1,4 +1,4 @@
 @ start:
 $$Начало$$
     set_var a 1
-    set_var b 2
+    push a

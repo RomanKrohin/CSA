@@ -32,7 +32,7 @@ def jif(self, arg: []):
                 self.stack_inscrutions.data = [ _ ] + self.stack_inscrutions.data
     else:
         self.stack_inscrutions.pop()
-
+        
 def set_var(self, arg: []):
     self.data_memory[int(arg[1], 16)-20] = arg[2] 
     self.stack_inscrutions.pop()
