@@ -1,7 +1,0 @@
-@ start:
-$$Начало$$
-    set_var a 113
-    push a
-    push 123
-    load a
-    push a
