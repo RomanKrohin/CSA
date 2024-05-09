@@ -1,0 +1,7 @@
+@ start:
+$$Начало$$
+    push 1123
+    add 1
+    set_var a Пошел нахуй!
+    set_var b sad fsd
+    print a
