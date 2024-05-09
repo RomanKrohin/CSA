@@ -41,7 +41,7 @@ def var_or_int_argument(arguments : []) -> []:
     return [variables[arguments[0]], hex(1), hex(0)]
 
 def set_var_argument(arguments : []) -> []:
-    variables[arguments[0]] = hex(len(variables.keys())*20+500)
+    variables[arguments[0]] = hex(len(variables.keys())*20)
     return [hex(len(variables.keys())*20), hex(int(arguments[1])), hex(0)]
 
 def var_argument(arguments : []) -> []:
@@ -54,7 +54,7 @@ commands = {
         "add": {"code" : '0x64' , "processor": one_argument}, 
         "pop": {"code" : '0xc8' , "processor": zero_arguments}, 
         "push": {"code" : '0x12c' , "processor": var_or_int_argument}, 
-        "load": {"code" : '0x420' , "processor": var_or_int_argument}, 
+        "load": {"code" : '0x520' , "processor": var_or_int_argument}, 
         "jif": {"code" : '0x190' , "processor": four_arguments}, 
         "jmp": {"code" : '0x2bc' , "processor": jmp_arguments},
         "set_var": {"code" : '0x420' , "processor": set_var_argument}}
@@ -69,7 +69,7 @@ def remove_all_newline(string_with_newline: str) -> str:
 def validate_label(string_without_newline_comments: str) -> None:
     patterns = [".", "@", " "]
     labels_dyn.append((string_without_newline_comments.replace(":", "")).replace("@ ", "").strip())
-    assert all(substring not in labels_dyn[-1] for substring in patterns) and not labels_dyn[-1].isnumeric(), "Говно а не лейбл"
+    assert all(substring not in labels_dyn[-1] for substring in patterns) and not labels_dyn[-1].isnumeric(), "Плохой лейбл"
     if labels.get(labels_dyn[-1])==None: 
         labels[labels_dyn[-1]]=hex(len(labels)+1)
 
@@ -91,3 +91,4 @@ def split_argument_command(command_argument) -> []:
     return ([commands[command_argument_list[0]]["code"], commands[command_argument_list[0]]["processor"](command_argument_list[1:])[0],
             commands[command_argument_list[0]]["processor"](command_argument_list[1:])[1],
             commands[command_argument_list[0]]["processor"](command_argument_list[1:])[2]])
+    

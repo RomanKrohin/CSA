@@ -9,9 +9,12 @@ def add(self, arg: []):
     self.stack_inscrutions.pop()
         
 def push(self, arg: []):
-    print(str(int(arg[1], 16)))
-    self.stack_memory.push(str(int(arg[1], 16))) 
-    self.stack_inscrutions.pop()
+    if (str(int(arg[2], 16))=="0"): 
+        self.stack_memory.push(str(int(arg[1], 16))) 
+        self.stack_inscrutions.pop()
+    else:
+        self.stack_memory.push(str(int(load_var(self, arg[1]), 16))) 
+        self.stack_inscrutions.pop()
 
 def pop(self, arg: []):
     self.stack_memory.pop()
@@ -33,9 +36,16 @@ def jif(self, arg: []):
     else:
         self.stack_inscrutions.pop()
         
-def set_var(self, arg: []):
+def load(self, arg: []):
+    self.data_memory[int(arg[1], 16)-20] = hex(int(self.stack_memory.peek()))
+    self.stack_inscrutions.pop()
+    
+def set_var(self, arg: []) :
     self.data_memory[int(arg[1], 16)-20] = arg[2] 
     self.stack_inscrutions.pop()
+    
+def load_var(self, var_adr: str) -> str:
+    return self.data_memory[int(var_adr, 16)-20]
     
     
 class Control_unit:
@@ -53,7 +63,8 @@ class Control_unit:
         "0x12c": push, 
         "0x190": jif, 
         "0x2bc": jmp,
-        "0x420": set_var}
+        "0x420": set_var,
+        "0x520": load}
         
     def connect_data_structures(self, insrt_mem: Memory, 
                                 data_stack: Stack, 
@@ -70,4 +81,4 @@ class Control_unit:
         while self.stack_inscrutions.size()>0:
             self.commands[self.stack_inscrutions.peek()[0]](self, self.stack_inscrutions.peek())
         print(self.stack_memory.data)
-        print(self.data_memory)
+        
