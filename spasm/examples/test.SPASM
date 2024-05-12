@@ -1,11 +1,12 @@
 _data
     a = 1
+    b = 2
 
 _programme
     @ start:
-        push 1
+        push a
 
     @ test1:
     $$Начало$$
         print a
-        push 2
+        push b
