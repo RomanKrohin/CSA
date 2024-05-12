@@ -89,7 +89,6 @@ def output(self, arg: []):
     self.do_tick()
     
 def input(self, arg: []):
-    print(123)
     self.inter_stack.push(Interruption(InterruptionType.INPUT))
     self.do_tick()
     self.in_adress=arg[1]
@@ -169,6 +168,7 @@ class Control_unit:
                         if self.time>key:
                             tmp.append(key)
                             self.input_stack.push(self.input_device[key])
+                            self.do_tick()
                     for i in tmp:
                         del self.input_device[i]
                     if self.input_stack.peek()=='\x00':
@@ -176,8 +176,10 @@ class Control_unit:
                         self.do_tick()
                         for i in range(0,self.input_stack.size()):
                             self.data_memory.data[hex(int(self.in_adress,16)+i)]=str(hex(ord(self.input_stack.data[0])))
+                            self.do_tick()
                             self.input_stack.data=self.input_stack.data[1:]
-                            
+                            self.do_tick()
+                    self.do_tick()
                     print(self.data_memory.data)
                         
         
