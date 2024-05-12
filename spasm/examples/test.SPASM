@@ -1,12 +1,8 @@
 _data
-    a = 1
-    b = 2
+    a = fghjkl
+    b = 
 
 _programme
     @ start:
-        push a
-
-    @ test1:
-    $$Начало$$
-        print a
-        push b
+        read b
+        print b

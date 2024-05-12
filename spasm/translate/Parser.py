@@ -60,6 +60,7 @@ commands = {
         "load": {"code" : '0x520' , "processor": var_argument}, 
         "jmp": {"code" : '0x2bc' , "processor": jmp_arguments},
         "print": {"code" : '0x290' , "processor": print_argument},
+        "read": {"code" : '0x390' , "processor": print_argument}
         }
 
 
