@@ -1,7 +1,11 @@
-@ start:
-$$Начало$$
-    push 1123
-    add 1
-    set_var a Пошел нахуй!
-    set_var b sad fsd
-    print a
+_data
+    a = 1
+
+_programme
+    @ start:
+        push 1
+
+    @ test1:
+    $$Начало$$
+        print a
+        push 2
