@@ -16,9 +16,38 @@ def add(self, arg: []):
     self.do_tick()
     self.stack_inscrutions.pop()
     self.do_tick()
+
+def sub(self, arg: []):
+    self.ALU.sub(int(self.stack_memory.peek(), 16), int(arg[1], 16))
+    self.do_tick()
+    self.stack_memory.pop()
+    self.do_tick()
+    self.stack_memory.push(hex(self.ALU.result))
+    self.do_tick()
+    self.stack_inscrutions.pop()
+    self.do_tick()
+    
+def div(self, arg: []):
+    self.ALU.div(int(self.stack_memory.peek(), 16), int(arg[1], 16))
+    self.do_tick()
+    self.stack_memory.pop()
+    self.do_tick()
+    self.stack_memory.push(hex(self.ALU.result))
+    self.do_tick()
+    self.stack_inscrutions.pop()
+    self.do_tick()
+    
+def mul(self, arg: []):
+    self.ALU.mul(int(self.stack_memory.peek(), 16), int(arg[1], 16))
+    self.do_tick()
+    self.stack_memory.pop()
+    self.do_tick()
+    self.stack_memory.push(hex(self.ALU.result))
+    self.do_tick()
+    self.stack_inscrutions.pop()
+    self.do_tick()
         
 def push(self, arg: []):
-    print(321)
     if (str(int(arg[2], 16))=="0"): 
         self.stack_memory.push((arg[1]))
         self.do_tick() 
@@ -46,6 +75,46 @@ def jmp(self, arg: []):
     self.command_pointer=int(arg[1], 16)-1
     self.do_tick()
         
+def jeq(self, arg: []):
+    self.ALU.eq(int(self.stack_memory.peek(), 16), int(arg[1], 16))
+    if (self.ALU.result==1):
+        self.stack_inscrutions.data.clear()
+        self.do_tick()
+        self.stack_inscrutions.pop()
+        self.do_tick()
+        self.command_pointer=int(arg[1], 16)-1
+        self.do_tick()
+        
+def jne(self, arg: []):
+    self.ALU.ne(int(self.stack_memory.peek(), 16), int(arg[1], 16))
+    if (self.ALU.result==1):
+        self.stack_inscrutions.data.clear()
+        self.do_tick()
+        self.stack_inscrutions.pop()
+        self.do_tick()
+        self.command_pointer=int(arg[1], 16)-1
+        self.do_tick()
+    
+def jla(self, arg: []):
+    self.ALU.la(int(self.stack_memory.peek(), 16), int(arg[1], 16))
+    if (self.ALU.result==1):
+        self.stack_inscrutions.data.clear()
+        self.do_tick()
+        self.stack_inscrutions.pop()
+        self.do_tick()
+        self.command_pointer=int(arg[1], 16)-1
+        self.do_tick()
+    
+def jle(self, arg: []):
+    self.ALU.le(int(self.stack_memory.peek(), 16), int(arg[1], 16))
+    if (self.ALU.result==1):
+        self.stack_inscrutions.data.clear()
+        self.do_tick()
+        self.stack_inscrutions.pop()
+        self.do_tick()
+        self.command_pointer=int(arg[1], 16)-1
+        self.do_tick()
+    
 def load_int_to_var(self, arg: []):
     self.data_memory.write(arg[1], self.stack_memory.peek(), '0x3')
     self.do_tick()
@@ -110,10 +179,17 @@ class Control_unit:
         self.input_device={5: 'p', 10: 'i', 15: 'v', 20: 'o', 25: '\0'}
         self.ALU = ALU()
         self.commands = {
-            "0x64": add, 
+            "0x64": add,
+            "0x74": sub,
+            "0x84": div,
+            "0x94": mul, 
             "0xc8": pop, 
             "0x12c": push,
             "0x2bc": jmp,
+            "0x3bc": jeq,
+            "0x4bc": jne,
+            "0x5bc": jla,
+            "0x6bc": jle,
             "0x420": set_var,
             "0x520": load_int_to_var,
             "0x290": output,
@@ -184,6 +260,7 @@ class Control_unit:
                         
         
     def process(self) -> None:
+        print(self.instruction_memory.data)
         logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
         logger = logging.getLogger('my_logger')
         while True:

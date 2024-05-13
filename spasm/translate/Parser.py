@@ -8,12 +8,6 @@ labels = {
 
 labels_dyn=[]
 
-signes = {
-    ">": '0x3e8',
-    "=": '0x7d0',
-    "<": '0xbb8',
-}
-
 dynamic_names = {}
 
 machine_code = []
@@ -54,13 +48,20 @@ def print_argument(arguments : []) -> []:
 
 
 commands = {
-        "add": {"code" : '0x64' , "processor": one_argument}, 
+        "add": {"code" : '0x64' , "processor": var_or_int_argument}, 
         "pop": {"code" : '0xc8' , "processor": zero_arguments}, 
         "push": {"code" : '0x12c' , "processor": var_or_int_argument}, 
         "load": {"code" : '0x520' , "processor": var_argument}, 
         "jmp": {"code" : '0x2bc' , "processor": jmp_arguments},
+        "jeq": {"code" : '0x3bc' , "processor": jmp_arguments},
+        "jne": {"code" : '0x4bc' , "processor": jmp_arguments},
+        "jla": {"code" : '0x5bc' , "processor": jmp_arguments},
+        "jle": {"code" : '0x5bc' , "processor": jmp_arguments},
         "print": {"code" : '0x290' , "processor": print_argument},
-        "read": {"code" : '0x390' , "processor": print_argument}
+        "read": {"code" : '0x390' , "processor": print_argument},
+        "sub": {"code" : '0x74' , "processor": var_or_int_argument},
+        "div": {"code" : '0x84' , "processor": var_or_int_argument},
+        "mul": {"code" : '0x94' , "processor": var_or_int_argument},
         }
 
 
