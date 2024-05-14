@@ -4,4 +4,5 @@ _data
 _programme
     @ start:
         push 1
+        hlt
         mul 4

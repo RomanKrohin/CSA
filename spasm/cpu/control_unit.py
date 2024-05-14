@@ -4,7 +4,6 @@ from cpu.alu import ALU
 import logging
 from cpu.interruption import Interruption
 from cpu.interruption import InterruptionType
-from IOmanagers.output_manager import Output_manager
 
 
 def add(self, arg: []):
@@ -185,6 +184,12 @@ def decr(self, arg: []):
     self.stack_inscrutions.pop()
     self.do_tick()
     
+def hlt(self, arg: []):
+    self.inter_stack.push(Interruption(InterruptionType.STOP))
+    self.do_tick()
+    self.stack_inscrutions.pop()
+    self.do_tick()
+
 class Control_unit:
         
     def __init__(self) -> None:
@@ -200,6 +205,7 @@ class Control_unit:
         self.ALU = ALU()
         self.commands = {
             "0x64": add,
+            "0x1": hlt,
             "0x74": sub,
             "0x84": div,
             "0x94": mul, 
@@ -277,6 +283,10 @@ class Control_unit:
                             self.do_tick()
                     self.do_tick()
                     print(self.data_memory.data)
+                case InterruptionType.STOP:
+                    self.inter_stack.pop()
+                    self.do_tick()
+                    exit(0)
                         
         
     def process(self) -> None:
@@ -284,16 +294,17 @@ class Control_unit:
         logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
         logger = logging.getLogger('my_logger')
         while True:
-            print(self.instruction_memory.data[self.command_pointer])
-            self.stack_inscrutions.data = [ self.instruction_memory.data[self.command_pointer] ] + self.stack_inscrutions.data
+            if self.stack_inscrutions.size()<1:
+                self.stack_inscrutions.data = [ self.instruction_memory.data[self.command_pointer] ] + self.stack_inscrutions.data
+                self.do_tick()
             self.do_tick()
             self.command_pointer+=1
             self.do_tick()            
             self.commands[self.stack_inscrutions.peek()[0]](self, self.stack_inscrutions.peek())
             self.do_tick()
-            self.init_interuption()
             logger.info(self.stack_memory.data)
             if (self.command_pointer>=len(self.instruction_memory.data)):
-                exit(0)
+                self.stack_inscrutions.data = [ ['0x1', '0x0', '0x0', '0x0'] ] + self.stack_inscrutions.data
+            self.init_interuption()
             self.do_tick()
             
