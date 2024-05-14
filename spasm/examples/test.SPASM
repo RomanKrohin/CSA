@@ -1,8 +1,7 @@
 _data
-    a = 123
-    b = 
+    a = 1
 
 _programme
     @ start:
-        read b
-        print b
+        push 1
+        mul 4

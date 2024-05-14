@@ -164,6 +164,26 @@ def input(self, arg: []):
     self.do_tick()
     self.stack_inscrutions.pop()
     self.do_tick()
+
+def incr(self, arg: []):
+    self.ALU.add(int(self.stack_memory.peek(), 16), 1)
+    self.do_tick()
+    self.stack_memory.pop()
+    self.do_tick()
+    self.stack_memory.push(hex(self.ALU.result))
+    self.do_tick()
+    self.stack_inscrutions.pop()
+    self.do_tick()
+    
+def decr(self, arg: []):
+    self.ALU.sub(int(self.stack_memory.peek(), 16), 1)
+    self.do_tick()
+    self.stack_memory.pop()
+    self.do_tick()
+    self.stack_memory.push(hex(self.ALU.result))
+    self.do_tick()
+    self.stack_inscrutions.pop()
+    self.do_tick()
     
 class Control_unit:
         
@@ -193,6 +213,8 @@ class Control_unit:
             "0x420": set_var,
             "0x520": load_int_to_var,
             "0x290": output,
+            "0x530": incr,
+            "0x630": decr,
             "0x390": input}
         
     def do_tick(self):
@@ -235,9 +257,7 @@ class Control_unit:
                     self.stack_memory.pop()
                     self.do_tick()
                     value = value[::-1]
-                    om = Output_manager()
-                    om.set_result_filepath("output.txt")
-                    om.write(value)
+                    print(value)
                 case InterruptionType.INPUT:
                     tmp =[]
                     for key in self.input_device.keys():
