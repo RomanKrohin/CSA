@@ -127,7 +127,11 @@ def output(self, arg: []):
 
     
 def input(self, arg: []):
-    self.in_adress=arg[1]
+    if len(self.input_device)==0:
+        self.stack_memory.push('0x0')
+    else:
+        self.stack_memory.push(hex(ord(self.input_device[0])))
+        del self.input_device[0]
     self.stack_inscrutions.pop()
 
 
@@ -147,7 +151,7 @@ def decr(self, arg: []):
     
 def hlt(self, arg: []):
     self.stack_inscrutions.pop()
-    print(self.output_device)
+    print(self.data_memory.data)
     exit(0)
 
 def load_by_adr(self, arg: []):
@@ -158,7 +162,6 @@ def load_by_adr(self, arg: []):
     self.stack_inscrutions.pop()
 
 def push_by_adr(self, arg: []):
-    print(self.data_memory.data)
     self.stack_memory.push(self.data_memory.read(self.stack_memory.peek()))
     self.stack_inscrutions.pop()
     
