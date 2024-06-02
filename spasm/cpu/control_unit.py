@@ -55,45 +55,63 @@ def jmp(self, arg: []):
 
         
 def jeq(self, arg: []):
-    self.ALU.eq(int(self.stack_memory.peek(), 16), int(arg[1], 16))
+    self.tmp.push(self.stack_memory.peek())
+    self.stack_memory.pop()
+    self.ALU.eq(int(self.stack_memory.peek(), 16), int(self.tmp.peek(), 16))
     if (self.ALU.result==1):
+        print(123)
         self.stack_inscrutions.data.clear()
-        self.stack_inscrutions.pop()
         self.command_pointer=int(arg[1], 16)-1
+    self.stack_inscrutions.pop()
+    self.stack_memory.push(self.tmp.peek())
+    self.tmp.pop()
     
         
 def jne(self, arg: []):
-    self.ALU.ne(int(self.stack_memory.peek(), 16), int(arg[1], 16))
+    self.tmp.push(self.stack_memory.peek())
+    self.stack_memory.pop()
+    self.ALU.ne(int(self.stack_memory.peek(), 16), int(self.tmp.peek(), 16))
     if (self.ALU.result==1):
+        print(312)
         self.stack_inscrutions.data.clear()
-        self.stack_inscrutions.pop()
         self.command_pointer=int(arg[1], 16)-1
+    self.stack_inscrutions.pop()
+    self.stack_memory.push(self.tmp.peek())
+    self.tmp.pop()
     
     
 def jla(self, arg: []):
-    self.ALU.la(int(self.stack_memory.peek(), 16), int(arg[1], 16))
+    self.tmp.push(self.stack_memory.peek())
+    self.stack_memory.pop()
+    self.ALU.la(int(self.stack_memory.peek(), 16), int(self.tmp.peek(), 16))
     if (self.ALU.result==1):
         self.stack_inscrutions.data.clear()
-        self.stack_inscrutions.pop()
         self.command_pointer=int(arg[1], 16)-1
+    self.stack_inscrutions.pop()
+    self.stack_memory.push(self.tmp.peek())
+    self.tmp.pop()
     
     
 def jle(self, arg: []):
-    self.ALU.le(int(self.stack_memory.peek(), 16), int(arg[1], 16))
+    self.tmp.push(self.stack_memory.peek())
+    self.stack_memory.pop()
+    self.ALU.le(int(self.stack_memory.peek(), 16), int(self.tmp.peek(), 16))
     if (self.ALU.result==1):
         self.stack_inscrutions.data.clear()
-        self.stack_inscrutions.pop()
         self.command_pointer=int(arg[1], 16)-1
+    self.stack_inscrutions.pop()
+    self.stack_memory.push(self.tmp.peek())
+    self.tmp.pop()
     
     
 def load_int_to_var(self, arg: []):
-    self.data_memory.write(arg[1], self.stack_memory.peek(), '0x3')
+    self.data_memory.write(arg[1], self.stack_memory.peek())
     self.stack_inscrutions.pop()
     self.stack_memory.pop()
 
     
 def set_var(self, arg: []):
-    self.data_memory.write(arg[1], arg[2], arg[3])
+    self.data_memory.write(arg[1], arg[2])
     self.stack_inscrutions.pop()
 
 
@@ -103,19 +121,8 @@ def load_var(self, var_adr: str) -> str:
 
 
 def output(self, arg: []):
-    count=0
-    self.stack_memory.push('\0')
-    if (self.data_memory.data[hex(int(arg[1],16)+1)]=='0x3'):
-            self.stack_memory.push(self.data_memory.data[hex(int(arg[1],16))])
-            self.stack_memory.push('0x2')
-        
-    
-    else:    
-        while(count<40 and self.data_memory.data[hex(int(arg[1],16)+count)]!='0x0'):
-            self.stack_memory.push(self.data_memory.data[hex(int(arg[1],16)+count)])
-            count+=1
-        self.stack_memory.push('0x1')
-    
+    self.output_device.append(chr(int(self.stack_memory.peek(), 16)))
+    self.stack_memory.pop()
     self.stack_inscrutions.pop()
 
     
@@ -140,16 +147,18 @@ def decr(self, arg: []):
     
 def hlt(self, arg: []):
     self.stack_inscrutions.pop()
+    print(self.output_device)
     exit(0)
 
 def load_by_adr(self, arg: []):
     self.tmp.push(self.stack_memory.peek())
     self.stack_memory.pop()
-    self.data_memory.write(self.stack_memory.peek(), self.tmp.peek(), '0x0')
+    self.data_memory.write(self.stack_memory.peek(), self.tmp.peek())
     self.tmp.pop()
     self.stack_inscrutions.pop()
 
 def push_by_adr(self, arg: []):
+    print(self.data_memory.data)
     self.stack_memory.push(self.data_memory.read(self.stack_memory.peek()))
     self.stack_inscrutions.pop()
     

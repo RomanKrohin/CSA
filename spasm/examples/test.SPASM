@@ -1,12 +1,33 @@
 _data
-    a = 2
-    b = a
+    adr = 0
+    a = 0
+    c = 0
+    b = Hello world!
 
 _programme
     @ start:
-        adr b  
-        decr
-        push_by_adr  
-        decr
-        load_by_adr 
+        adr b
+        load adr
+        jmp loop
+
+    @ loop:
+        push adr
+        incr
+        push_by_adr
+        print
+        push a
+        incr
+        push b
+        jne tmp
+        jeq end
+
+    @ tmp:
+        pop
+        load a
+        load adr
+        jmp loop
+
+    @ end:
         hlt
+
+
