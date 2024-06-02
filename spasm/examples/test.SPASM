@@ -1,10 +1,12 @@
 _data
-    a = 1
+    a = 2
     b = a
 
 _programme
     @ start:
-        push 1
-        mul 4
-        adr b          
+        adr b  
+        decr
+        push_by_adr  
+        decr
+        load_by_adr 
         hlt

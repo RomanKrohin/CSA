@@ -35,7 +35,7 @@ def set_var_argument(arguments : [], memory_pointer: int) -> []:
     if (not re.match(r"\d+", " ".join(arguments[1:]))):
         for c in str(" ".join(arguments[1:])):
             i+=1
-            tmp.append(['0x420', hex((int(variables[arguments[0]], 16)+memory_pointer)), hex(ord(c)), hex(1)])
+            tmp.append(['0x420', hex((int(variables[arguments[0]], 16)+memory_pointer)), hex(ord(c)), hex(0)])
             memory_pointer+=1
         machine_code.append(['0x420', hex((int(variables[arguments[0]], 16))), hex(i), hex(0)])
         memory_pointer+=1
@@ -43,8 +43,8 @@ def set_var_argument(arguments : [], memory_pointer: int) -> []:
             machine_code.append(comm)
         return memory_pointer
     else:
-        machine_code.append( ['0x420',hex(int(variables[arguments[0]], 16)), hex(int(arguments[1])), hex(3)])
-        memory_pointer+=2
+        machine_code.append( ['0x420',hex(int(variables[arguments[0]], 16)), hex(int(arguments[1])), hex(0)])
+        memory_pointer+=1
         return memory_pointer
 
 def var_argument(arguments : []) -> []:
@@ -53,7 +53,6 @@ def var_argument(arguments : []) -> []:
 def print_argument(arguments : []) -> []:
     if (variables.get(arguments[0]) != None):
         return [variables.get(arguments[0]), hex(0), hex(3)]
-
 
 commands = {
         "add": {"code" : '0x64' , "processor": var_or_int_argument}, 
@@ -73,7 +72,9 @@ commands = {
         "sub": {"code" : '0x74' , "processor": var_or_int_argument},
         "div": {"code" : '0x84' , "processor": var_or_int_argument},
         "mul": {"code" : '0x94' , "processor": var_or_int_argument},
-        "adr": {"code" : '0x12c' , "processor": var_argument}
+        "adr": {"code" : '0x12c' , "processor": var_argument},
+        "push_by_adr": {"code" : '0x44' , "processor": zero_arguments},
+        "load_by_adr": {"code" : '0x48' , "processor": zero_arguments},
         }
 
 
