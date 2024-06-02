@@ -6,4 +6,5 @@ _programme
     @ start:
         push 1
         mul 4
+        adr b          
         hlt

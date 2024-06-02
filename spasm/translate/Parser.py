@@ -73,6 +73,7 @@ commands = {
         "sub": {"code" : '0x74' , "processor": var_or_int_argument},
         "div": {"code" : '0x84' , "processor": var_or_int_argument},
         "mul": {"code" : '0x94' , "processor": var_or_int_argument},
+        "adr": {"code" : '0x12c' , "processor": var_argument}
         }
 
 

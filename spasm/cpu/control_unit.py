@@ -8,187 +8,144 @@ from cpu.interruption import InterruptionType
 
 def add(self, arg: []):
     self.ALU.add(int(self.stack_memory.peek(), 16), int(arg[1], 16))
-    self.do_tick()
     self.stack_memory.pop()
-    self.do_tick()
     self.stack_memory.push(hex(self.ALU.result))
-    self.do_tick()
     self.stack_inscrutions.pop()
-    self.do_tick()
+
 
 def sub(self, arg: []):
     self.ALU.sub(int(self.stack_memory.peek(), 16), int(arg[1], 16))
-    self.do_tick()
     self.stack_memory.pop()
-    self.do_tick()
     self.stack_memory.push(hex(self.ALU.result))
-    self.do_tick()
     self.stack_inscrutions.pop()
-    self.do_tick()
+
     
 def div(self, arg: []):
     self.ALU.div(int(self.stack_memory.peek(), 16), int(arg[1], 16))
-    self.do_tick()
     self.stack_memory.pop()
-    self.do_tick()
     self.stack_memory.push(hex(self.ALU.result))
-    self.do_tick()
     self.stack_inscrutions.pop()
-    self.do_tick()
+
     
 def mul(self, arg: []):
     self.ALU.mul(int(self.stack_memory.peek(), 16), int(arg[1], 16))
-    self.do_tick()
     self.stack_memory.pop()
-    self.do_tick()
     self.stack_memory.push(hex(self.ALU.result))
-    self.do_tick()
     self.stack_inscrutions.pop()
-    self.do_tick()
+
         
 def push(self, arg: []):
     if (str(int(arg[2], 16))=="0"): 
         self.stack_memory.push((arg[1]))
-        self.do_tick() 
         self.stack_inscrutions.pop()
-        self.do_tick()
     else:
         self.stack_memory.push(hex(int(load_var(self, arg[1]), 16)))
-        self.do_tick() 
         self.stack_inscrutions.pop()
-        self.do_tick()
-    self.do_tick()
-
+    
 
 def pop(self, arg: []):
     self.stack_memory.pop()
-    self.do_tick()
     self.stack_inscrutions.pop()
-    self.do_tick()
+
     
 def jmp(self, arg: []):
     self.stack_inscrutions.data.clear()
-    self.do_tick()
     self.stack_inscrutions.pop()
-    self.do_tick()
     self.command_pointer=int(arg[1], 16)-1
-    self.do_tick()
+
         
 def jeq(self, arg: []):
     self.ALU.eq(int(self.stack_memory.peek(), 16), int(arg[1], 16))
     if (self.ALU.result==1):
         self.stack_inscrutions.data.clear()
-        self.do_tick()
         self.stack_inscrutions.pop()
-        self.do_tick()
         self.command_pointer=int(arg[1], 16)-1
-        self.do_tick()
+    
         
 def jne(self, arg: []):
     self.ALU.ne(int(self.stack_memory.peek(), 16), int(arg[1], 16))
     if (self.ALU.result==1):
         self.stack_inscrutions.data.clear()
-        self.do_tick()
         self.stack_inscrutions.pop()
-        self.do_tick()
         self.command_pointer=int(arg[1], 16)-1
-        self.do_tick()
+    
     
 def jla(self, arg: []):
     self.ALU.la(int(self.stack_memory.peek(), 16), int(arg[1], 16))
     if (self.ALU.result==1):
         self.stack_inscrutions.data.clear()
-        self.do_tick()
         self.stack_inscrutions.pop()
-        self.do_tick()
         self.command_pointer=int(arg[1], 16)-1
-        self.do_tick()
+    
     
 def jle(self, arg: []):
     self.ALU.le(int(self.stack_memory.peek(), 16), int(arg[1], 16))
     if (self.ALU.result==1):
         self.stack_inscrutions.data.clear()
-        self.do_tick()
         self.stack_inscrutions.pop()
-        self.do_tick()
         self.command_pointer=int(arg[1], 16)-1
-        self.do_tick()
+    
     
 def load_int_to_var(self, arg: []):
     self.data_memory.write(arg[1], self.stack_memory.peek(), '0x3')
-    self.do_tick()
     self.stack_inscrutions.pop()
-    self.do_tick()
     self.stack_memory.pop()
-    self.do_tick()
+
     
 def set_var(self, arg: []):
     self.data_memory.write(arg[1], arg[2], arg[3])
-    self.do_tick()
     self.stack_inscrutions.pop()
-    self.do_tick()
+
 
     
 def load_var(self, var_adr: str) -> str:
-    self.do_tick()
     return self.data_memory.read(var_adr)
 
 
 def output(self, arg: []):
     self.inter_stack.push(Interruption(InterruptionType.OUTPUT))
-    self.do_tick()
     count=0
     self.stack_memory.push('\0')
-    self.do_tick()
     if (self.data_memory.data[hex(int(arg[1],16)+1)]=='0x3'):
             self.stack_memory.push(self.data_memory.data[hex(int(arg[1],16))])
-            self.do_tick()
             self.stack_memory.push('0x2')
-            self.do_tick()
+        
     
     else:    
         while(count<40 and self.data_memory.data[hex(int(arg[1],16)+count)]!='0x0'):
             self.stack_memory.push(self.data_memory.data[hex(int(arg[1],16)+count)])
-            self.do_tick()
+        
             count+=1
         self.stack_memory.push('0x1')
-        self.do_tick()
+    
     self.stack_inscrutions.pop()
-    self.do_tick()
+
     
 def input(self, arg: []):
     self.inter_stack.push(Interruption(InterruptionType.INPUT))
-    self.do_tick()
     self.in_adress=arg[1]
-    self.do_tick()
     self.stack_inscrutions.pop()
-    self.do_tick()
+
 
 def incr(self, arg: []):
     self.ALU.add(int(self.stack_memory.peek(), 16), 1)
-    self.do_tick()
     self.stack_memory.pop()
-    self.do_tick()
     self.stack_memory.push(hex(self.ALU.result))
-    self.do_tick()
     self.stack_inscrutions.pop()
-    self.do_tick()
+
     
 def decr(self, arg: []):
     self.ALU.sub(int(self.stack_memory.peek(), 16), 1)
-    self.do_tick()
     self.stack_memory.pop()
-    self.do_tick()
     self.stack_memory.push(hex(self.ALU.result))
-    self.do_tick()
     self.stack_inscrutions.pop()
-    self.do_tick()
+
     
 def hlt(self, arg: []):
     self.inter_stack.push(Interruption(InterruptionType.STOP))
-    self.do_tick()
     self.stack_inscrutions.pop()
-    self.do_tick()
+    exit(0)
+
 
 class Control_unit:
         
@@ -201,7 +158,7 @@ class Control_unit:
         self.in_adress=None
         self.stack_memory = None
         self.stack_inscrutions = None
-        self.input_device={5: 'p', 10: 'i', 15: 'v', 20: 'o', 25: '\0'}
+        self.input_device=['a', 'b', 'c']
         self.ALU = ALU()
         self.commands = {
             "0x64": add,
@@ -234,60 +191,6 @@ class Control_unit:
         self.stack_inscrutions=instr_stack
         self.stack_memory=data_stack
         self.inter_stack= Stack()
-        
-    def init_interuption(self) -> None:
-        while self.inter_stack.size()>0:
-            interruption: Interruption = self.inter_stack.peek()
-            self.do_tick()
-    
-            match interruption.inter_type:
-                case InterruptionType.OUTPUT:
-                    self.inter_stack.pop()
-                    self.do_tick()
-                    value=""
-                    type_flag=self.stack_memory.peek()
-                    self.do_tick()
-                    self.stack_memory.pop()
-                    self.do_tick()
-                    while(self.stack_memory.peek()!='\x00'):
-                        if (type_flag=='0x1'):
-                            value+=chr(int(self.stack_memory.peek(), 16))
-                            self.do_tick()
-                        self.do_tick()
-                        if (type_flag=='0x2'):
-                            value+=str(int(self.stack_memory.peek(), 16))
-                            self.do_tick()
-                        self.do_tick()
-                        self.stack_memory.pop()
-                    self.do_tick()
-                    self.stack_memory.pop()
-                    self.do_tick()
-                    value = value[::-1]
-                    print(value)
-                case InterruptionType.INPUT:
-                    tmp =[]
-                    for key in self.input_device.keys():
-                        if self.time>key:
-                            tmp.append(key)
-                            self.input_stack.push(self.input_device[key])
-                            self.do_tick()
-                    for i in tmp:
-                        del self.input_device[i]
-                    if self.input_stack.peek()=='\x00':
-                        self.inter_stack.pop()
-                        self.do_tick()
-                        for i in range(0,self.input_stack.size()):
-                            self.data_memory.data[hex(int(self.in_adress,16)+i)]=str(hex(ord(self.input_stack.data[0])))
-                            self.do_tick()
-                            self.input_stack.data=self.input_stack.data[1:]
-                            self.do_tick()
-                    self.do_tick()
-                    print(self.data_memory.data)
-                case InterruptionType.STOP:
-                    self.inter_stack.pop()
-                    self.do_tick()
-                    print(self.data_memory.data)
-                    exit(0)
                         
         
     def process(self) -> None:
@@ -296,15 +199,10 @@ class Control_unit:
         while True:
             if self.stack_inscrutions.size()<1:
                 self.stack_inscrutions.data = [ self.instruction_memory.data[self.command_pointer] ] + self.stack_inscrutions.data
-                self.do_tick()
-            self.do_tick()
             self.command_pointer+=1
-            self.do_tick()            
             self.commands[self.stack_inscrutions.peek()[0]](self, self.stack_inscrutions.peek())
-            self.do_tick()
             logger.info(self.stack_memory.data)
             if (self.command_pointer>=len(self.instruction_memory.data)):
                 self.stack_inscrutions.data = [ ['0x1', '0x0', '0x0', '0x0'] ] + self.stack_inscrutions.data
-            self.init_interuption()
-            self.do_tick()
+        
             
