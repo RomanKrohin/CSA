@@ -1,8 +1,9 @@
 _data
     a = 1
+    b = a
 
 _programme
     @ start:
         push 1
-        hlt
         mul 4
+        hlt

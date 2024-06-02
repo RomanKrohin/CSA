@@ -286,11 +286,11 @@ class Control_unit:
                 case InterruptionType.STOP:
                     self.inter_stack.pop()
                     self.do_tick()
+                    print(self.data_memory.data)
                     exit(0)
                         
         
     def process(self) -> None:
-        print(self.instruction_memory.data)
         logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
         logger = logging.getLogger('my_logger')
         while True:

@@ -28,16 +28,24 @@ def var_or_int_argument(arguments : []) -> []:
         return [hex(int(arguments[0])), hex(0), hex(0)]
     return [variables[arguments[0]], hex(1), hex(0)]
 
-def set_var_argument(arguments : []) -> []:
-    variables[arguments[0]] = hex(len(variables.keys())*40)
+def set_var_argument(arguments : [], memory_pointer: int) -> []:
+    variables[arguments[0]] = hex(memory_pointer)
     i=0
+    tmp=[]
     if (not re.match(r"\d+", " ".join(arguments[1:]))):
         for c in str(" ".join(arguments[1:])):
-            machine_code.append(['0x420', hex((len(variables.keys())-1)*40+i), hex(ord(c)), hex(1)])
             i+=1
-        return [hex((len(variables.keys())-1)*40+i), hex(ord('\0')), hex(2)]
+            tmp.append(['0x420', hex((int(variables[arguments[0]], 16)+memory_pointer)), hex(ord(c)), hex(1)])
+            memory_pointer+=1
+        machine_code.append(['0x420', hex((int(variables[arguments[0]], 16))), hex(i), hex(0)])
+        memory_pointer+=1
+        for comm in tmp:
+            machine_code.append(comm)
+        return memory_pointer
     else:
-        return [hex((len(variables.keys())-1)*40), hex(int(arguments[1])), hex(3)]
+        machine_code.append( ['0x420',hex(int(variables[arguments[0]], 16)), hex(int(arguments[1])), hex(3)])
+        memory_pointer+=2
+        return memory_pointer
 
 def var_argument(arguments : []) -> []:
     return [variables.get(arguments[0]), hex(0), hex(0)]
@@ -87,6 +95,7 @@ def validate_label(string_without_newline_comments: str, machine_code: []) -> No
 def run(file: str) -> str:
     data_flag = False
     with open(file, "r") as f:
+        memory_pointer=0
         prgrm = f.readlines()
         for line in prgrm:
             string_without_newline_comments = remove_all_newline(remove_all_comments(line))
@@ -105,7 +114,7 @@ def run(file: str) -> str:
                     else:
                         machine_code.append(split_argument_command(string_without_newline_comments))
                 else:
-                    machine_code.append( ['0x420']+set_var_argument(string_without_newline_comments.replace("=","").replace("  "," ").split(" ")))
+                    memory_pointer= set_var_argument(string_without_newline_comments.replace("=","").replace("  "," ").split(" "), memory_pointer)
     return machine_code
                                          
 def split_argument_command(command_argument) -> []:
