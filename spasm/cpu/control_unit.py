@@ -59,7 +59,6 @@ def jeq(self, arg: []):
     self.stack_memory.pop()
     self.ALU.eq(int(self.stack_memory.peek(), 16), int(self.tmp.peek(), 16))
     if (self.ALU.result==1):
-        print(123)
         self.stack_inscrutions.data.clear()
         self.command_pointer=int(arg[1], 16)-1
     self.stack_inscrutions.pop()
@@ -72,7 +71,6 @@ def jne(self, arg: []):
     self.stack_memory.pop()
     self.ALU.ne(int(self.stack_memory.peek(), 16), int(self.tmp.peek(), 16))
     if (self.ALU.result==1):
-        print(312)
         self.stack_inscrutions.data.clear()
         self.command_pointer=int(arg[1], 16)-1
     self.stack_inscrutions.pop()
@@ -151,6 +149,7 @@ def decr(self, arg: []):
     
 def hlt(self, arg: []):
     self.stack_inscrutions.pop()
+    print(self.output_device)
     print(self.data_memory.data)
     exit(0)
 

@@ -3,5 +3,5 @@ from translate.Translator import to_binary, from_binary
 from cpu.loader_to_cpu import load_binary_code
 
 if __name__ == "__main__":
-    to_binary (run("examples/input_test.SPASM"), "output/test.bin")
+    to_binary (run("examples/Input_test.SPASM"), "output/test.bin")
     load_binary_code("output/test.bin")
