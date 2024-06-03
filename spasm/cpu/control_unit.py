@@ -177,7 +177,7 @@ class Control_unit:
         self.stack_memory = None
         self.stack_inscrutions = None
         self.output_device=[]
-        self.input_device=['a', 'b', 'c']
+        self.input_device=['R', 'o', 'm', 'a', 'n']
         self.ALU = ALU()
         self.commands = {
             "0x64": add,

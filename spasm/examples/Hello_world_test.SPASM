@@ -2,7 +2,7 @@ _data
     adr = 0
     a = 0
     c = 0
-    b = Hello world!
+    b = What is your name?
 
 _programme
     @ start:

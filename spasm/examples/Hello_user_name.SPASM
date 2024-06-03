@@ -1,0 +1,124 @@
+_data
+    adr = 0
+    a = 0
+    c = 0
+    b = What is your name?
+    d = Hello,
+    k = 
+
+_programme
+    @ start:
+        adr b
+        load adr
+        jmp loop
+
+    @ loop:
+        push adr
+        incr
+        push_by_adr
+        print
+        push a
+        incr
+        push b
+        jne tmp
+        jeq input
+
+    @ tmp:
+        pop
+        load a
+        load adr
+        jmp loop
+
+   @ input:
+        pop
+        pop
+        pop
+        push 10
+        print
+        adr k
+        load adr
+        jmp inputLoop
+
+    @ inputLoop:
+        push adr
+        incr
+        read
+        push 0
+        jeq output
+        jne inputTmp
+    
+    @ inputTmp:
+        pop
+        load_by_adr
+        load adr
+        push k
+        incr
+        load k
+        jmp inputLoop
+
+    @ output:
+        pop
+        pop
+        pop
+        push 0
+        load a
+        adr d
+        load adr
+        jmp outputLoop
+
+    @ outputLoop:
+        push adr
+        incr
+        push_by_adr
+        print
+        push a
+        incr
+        push d
+        jne outputTmp
+        jeq outputName
+
+    @ outputTmp:
+        pop
+        load a
+        load adr
+        jmp outputLoop
+
+    @ outputName:
+        pop
+        pop
+        pop
+        push 32
+        print
+        push 0
+        load a
+        adr k
+        load adr
+        jmp nameLoop
+ 
+    @ nameLoop:
+        push adr
+        incr
+        push_by_adr
+        print
+        push a
+        incr
+        push k
+        jne nameTmp
+        jeq end
+
+    @ nameTmp:
+        pop
+        load a
+        load adr
+        jmp nameLoop 
+
+    @ end:
+        push 33
+        print
+        hlt
+
+
+
+    
+
+
