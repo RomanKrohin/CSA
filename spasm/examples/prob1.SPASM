@@ -1,0 +1,43 @@
+_data
+    sum = 0
+    iterator = 0
+    limit = 1000
+
+_programme
+    @ start:
+        push sum
+        push iterator
+        jmp loop
+
+    @ loop:
+        incr
+        push limit
+        jeq end
+        pop
+        mod 3
+        push 0
+        jeq tmp
+        pop
+        pop
+        mod 5
+        push 0
+        jeq tmp
+        pop
+        pop
+        jmp loop
+
+    @ tmp:
+        pop
+        pop
+        load iterator
+        push iterator
+        add
+        load sum
+        pop
+        pop
+        push sum
+        push iterator
+        jmp loop 
+
+    @ end:
+        hlt

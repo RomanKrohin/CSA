@@ -11,6 +11,9 @@ class ALU:
         
     def mul (self ,first: int, second: int) -> None:
         self.result = first * second
+    
+    def mod (self ,first: int, second: int) -> None:
+        self.result = first % second
         
     def div (self ,first: int, second: int) -> None:
         self.result = first // second

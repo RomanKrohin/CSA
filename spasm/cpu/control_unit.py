@@ -7,32 +7,43 @@ from cpu.interruption import InterruptionType
 
 
 def add(self, arg: []):
-    self.ALU.add(int(self.stack_memory.peek(), 16), int(arg[1], 16))
+    self.tmp.push(self.stack_memory.peek())
     self.stack_memory.pop()
+    self.ALU.add(int(self.stack_memory.peek(), 16), int(self.tmp.peek(), 16))
+    self.stack_memory.push(self.tmp.peek())
+    self.tmp.pop()
     self.stack_memory.push(hex(self.ALU.result))
     self.stack_inscrutions.pop()
 
 
 def sub(self, arg: []):
-    self.ALU.sub(int(self.stack_memory.peek(), 16), int(arg[1], 16))
+    self.tmp.push(self.stack_memory.peek())
     self.stack_memory.pop()
+    self.ALU.sub(int(self.stack_memory.peek(), 16), int(self.tmp.peek(), 16))
+    self.stack_memory.push(self.tmp.peek())
+    self.tmp.pop()
     self.stack_memory.push(hex(self.ALU.result))
     self.stack_inscrutions.pop()
 
     
 def div(self, arg: []):
-    self.ALU.div(int(self.stack_memory.peek(), 16), int(arg[1], 16))
+    self.tmp.push(self.stack_memory.peek())
     self.stack_memory.pop()
+    self.ALU.div(int(self.stack_memory.peek(), 16), int(self.tmp.peek(), 16))
+    self.stack_memory.push(self.tmp.peek())
+    self.tmp.pop()
     self.stack_memory.push(hex(self.ALU.result))
     self.stack_inscrutions.pop()
 
     
 def mul(self, arg: []):
-    self.ALU.mul(int(self.stack_memory.peek(), 16), int(arg[1], 16))
+    self.tmp.push(self.stack_memory.peek())
     self.stack_memory.pop()
+    self.ALU.mul(int(self.stack_memory.peek(), 16), int(self.tmp.peek(), 16))
+    self.stack_memory.push(self.tmp.peek())
+    self.tmp.pop()
     self.stack_memory.push(hex(self.ALU.result))
     self.stack_inscrutions.pop()
-
         
 def push(self, arg: []):
     if (str(int(arg[2], 16))=="0"): 
@@ -152,6 +163,11 @@ def hlt(self, arg: []):
     print(self.output_device)
     print(self.data_memory.data)
     exit(0)
+    
+def mod(self, arg: []):
+    self.ALU.mod(int(self.stack_memory.peek(), 16), int(arg[1], 16))
+    self.stack_memory.push(hex(self.ALU.result))
+    self.stack_inscrutions.pop()
 
 def load_by_adr(self, arg: []):
     self.tmp.push(self.stack_memory.peek())
@@ -199,7 +215,8 @@ class Control_unit:
             "0x630": decr,
             "0x390": input,
             "0x44": push_by_adr,
-            "0x48": load_by_adr}
+            "0x48": load_by_adr,
+            "0x220": mod}
         
     def do_tick(self):
         self.time+=1

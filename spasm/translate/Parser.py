@@ -55,7 +55,7 @@ def print_argument(arguments : []) -> []:
         return [variables.get(arguments[0]), hex(0), hex(3)]
 
 commands = {
-        "add": {"code" : '0x64' , "processor": var_or_int_argument}, 
+        "add": {"code" : '0x64' , "processor": zero_arguments}, 
         "pop": {"code" : '0xc8' , "processor": zero_arguments}, 
         "push": {"code" : '0x12c' , "processor": var_or_int_argument}, 
         "load": {"code" : '0x520' , "processor": var_argument},
@@ -69,12 +69,13 @@ commands = {
         "jle": {"code" : '0x5bc' , "processor": jmp_arguments},
         "print": {"code" : '0x290' , "processor": zero_arguments},
         "read": {"code" : '0x390' , "processor": zero_arguments},
-        "sub": {"code" : '0x74' , "processor": var_or_int_argument},
-        "div": {"code" : '0x84' , "processor": var_or_int_argument},
-        "mul": {"code" : '0x94' , "processor": var_or_int_argument},
+        "sub": {"code" : '0x74' , "processor": zero_arguments},
+        "div": {"code" : '0x84' , "processor": zero_arguments},
+        "mul": {"code" : '0x94' , "processor": zero_arguments},
         "adr": {"code" : '0x12c' , "processor": var_argument},
         "push_by_adr": {"code" : '0x44' , "processor": zero_arguments},
         "load_by_adr": {"code" : '0x48' , "processor": zero_arguments},
+        "mod": {"code" : '0x220' , "processor": var_or_int_argument}
         }
 
 
