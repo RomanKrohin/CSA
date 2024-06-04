@@ -13,69 +13,69 @@ dynamic_names = {}
 machine_code = []
 
 def zero_arguments(arguments : []) -> []:
-    return [hex(0), hex(0), hex(0)]
+    return [(0), (0)]
 
 def jmp_arguments(arguments : []) -> []:
     if (labels.get(arguments[0])==None):
-        return [arguments[0], hex(0), hex(0)]
-    return [labels[arguments[0]], hex(0), hex(0)]
+        return [arguments[0], (0)]
+    return [labels[arguments[0]], (0)]
 
 def one_argument(arguments : []) -> []:
-    return [hex(int(arguments[0])), hex(0), hex(0)]
+    return [(int(arguments[0])), (0)]
 
 def var_or_int_argument(arguments : []) -> []:
     if (re.match(r"\d+", arguments[0])):
-        return [hex(int(arguments[0])), hex(0), hex(0)]
-    return [variables[arguments[0]], hex(1), hex(0)]
+        return [(int(arguments[0])), (0)]
+    return [variables[arguments[0]], (1)]
 
 def set_var_argument(arguments : [], memory_pointer: int) -> []:
-    variables[arguments[0]] = hex(memory_pointer)
+    variables[arguments[0]] = (memory_pointer)
     i=0
     tmp=[]
     if (not re.match(r"\d+", " ".join(arguments[1:]))):
         for c in str(" ".join(arguments[1:])):
             i+=1
-            tmp.append(['0x420', hex((int(variables[arguments[0]], 16)+i)), hex(ord(c)), hex(0)])
+            tmp.append(['INIT', ((int(variables[arguments[0]])+i)), (ord(c))])
             memory_pointer+=1
-        machine_code.append(['0x420', hex((int(variables[arguments[0]], 16))), hex(i), hex(0)])
+        machine_code.append(['INIT', ((int(variables[arguments[0]]))), (i)])
         memory_pointer+=1
         for comm in tmp:
             machine_code.append(comm)
         return memory_pointer
     else:
-        machine_code.append( ['0x420',hex(int(variables[arguments[0]], 16)), hex(int(arguments[1])), hex(0)])
+        machine_code.append( ['INIT',(int(variables[arguments[0]])), (int(arguments[1]))])
         memory_pointer+=1
         return memory_pointer
 
 def var_argument(arguments : []) -> []:
-    return [variables.get(arguments[0]), hex(0), hex(0)]
+    return [variables.get(arguments[0]), (0)]
 
 def print_argument(arguments : []) -> []:
     if (variables.get(arguments[0]) != None):
-        return [variables.get(arguments[0]), hex(0), hex(3)]
+        return [variables.get(arguments[0]), (0)]
 
 commands = {
-        "add": {"code" : '0x64' , "processor": zero_arguments}, 
-        "pop": {"code" : '0xc8' , "processor": zero_arguments}, 
-        "push": {"code" : '0x12c' , "processor": var_or_int_argument}, 
-        "load": {"code" : '0x520' , "processor": var_argument},
-        "incr": {"code" : '0x530' , "processor": zero_arguments}, 
-        "decr": {"code" : '0x630' , "processor": zero_arguments},
-        "hlt": {"code" : '0x1' , "processor": zero_arguments}, 
-        "jmp": {"code" : '0x2bc' , "processor": jmp_arguments},
-        "jeq": {"code" : '0x3bc' , "processor": jmp_arguments},
-        "jne": {"code" : '0x4bc' , "processor": jmp_arguments},
-        "jla": {"code" : '0x5bc' , "processor": jmp_arguments},
-        "jle": {"code" : '0x5bc' , "processor": jmp_arguments},
-        "print": {"code" : '0x290' , "processor": zero_arguments},
-        "read": {"code" : '0x390' , "processor": zero_arguments},
-        "sub": {"code" : '0x74' , "processor": zero_arguments},
-        "div": {"code" : '0x84' , "processor": zero_arguments},
-        "mul": {"code" : '0x94' , "processor": zero_arguments},
-        "adr": {"code" : '0x12c' , "processor": var_argument},
-        "push_by_adr": {"code" : '0x44' , "processor": zero_arguments},
-        "load_by_adr": {"code" : '0x48' , "processor": zero_arguments},
-        "mod": {"code" : '0x220' , "processor": var_or_int_argument}
+        "add": {"code" : 'ADD' , "processor": zero_arguments}, 
+        "pop": {"code" : 'POP' , "processor": zero_arguments}, 
+        "push": {"code" : 'PUSH' , "processor": var_or_int_argument}, 
+        "load": {"code" : 'LOAD' , "processor": var_argument},
+        "incr": {"code" : 'INCR' , "processor": zero_arguments}, 
+        "decr": {"code" : 'DECR' , "processor": zero_arguments},
+        "hlt": {"code" : 'HLT' , "processor": zero_arguments}, 
+        "jmp": {"code" : 'JMP' , "processor": jmp_arguments},
+        "jeq": {"code" : 'JEQ' , "processor": jmp_arguments},
+        "jne": {"code" : 'JNE' , "processor": jmp_arguments},
+        "jla": {"code" : 'JLA' , "processor": jmp_arguments},
+        "jle": {"code" : 'JLE' , "processor": jmp_arguments},
+        "print": {"code" : 'PRINT' , "processor": zero_arguments},
+        "read": {"code" : 'READ' , "processor": zero_arguments},
+        "sub": {"code" : 'SUB' , "processor": zero_arguments},
+        "div": {"code" : 'DIV' , "processor": zero_arguments},
+        "mul": {"code" : 'MUL' , "processor": zero_arguments},
+        "adr": {"code" : 'ADR' , "processor": var_argument},
+        "push_by_adr": {"code" : 'PADR' , "processor": zero_arguments},
+        "load_by_adr": {"code" : 'LADR' , "processor": zero_arguments},
+        "mod": {"code" : 'MOD' , "processor": var_or_int_argument}
         }
 
 
@@ -90,7 +90,7 @@ def validate_label(string_without_newline_comments: str, machine_code: []) -> No
     labels_dyn.append((string_without_newline_comments.replace(":", "")).replace("@ ", "").strip())
     assert all(substring not in labels_dyn[-1] for substring in patterns) and not labels_dyn[-1].isnumeric(), "Плохой лейбл"
     if labels.get(labels_dyn[-1])==None: 
-        labels[labels_dyn[-1]]=hex(len(machine_code)+1)
+        labels[labels_dyn[-1]]=(len(machine_code)+1)
     for command in machine_code:
         if (command[1]==labels_dyn[-1]):
             command[1] = labels[labels_dyn[-1]]
@@ -107,9 +107,9 @@ def run(file: str) -> str:
             if (string_without_newline_comments.strip()=="_programme"):
                 data_flag=False
                 if (labels.get("start")==None):
-                    machine_code.append(['0x2bc', "start", '0x0', '0x0'])
+                    machine_code.append(['JMP', "start", 0])
                 else:
-                    machine_code.append(['0x2bc', labels["start"], '0x0', '0x0'])
+                    machine_code.append(['JMP', labels["start"], 0])
             if (string_without_newline_comments.strip()!="" and not re.fullmatch(r"_[\s\S]*", string_without_newline_comments)):
                 if (not data_flag):    
                     if (re.fullmatch(r"@ [\s\S]*\:", string_without_newline_comments)):
@@ -126,6 +126,5 @@ def split_argument_command(command_argument) -> []:
     processor_result = commands[command_argument_list[0]]["processor"](command_argument_list[1:])
     return ([commands[command_argument_list[0]]["code"], 
             processor_result[0],
-            processor_result[1],
-            processor_result[2]])
+            processor_result[1]])
     

@@ -40,4 +40,6 @@ _programme
         jmp loop 
 
     @ end:
+        pop
+        pop
         hlt
