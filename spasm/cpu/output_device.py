@@ -1,13 +1,13 @@
-class Output_device:
-    
+class OutputDevice:
+
     def __init__(self):
         self.output_array=[]
-        
+
     def add_symbol(self, c: chr):
         self.output_array.append(c)
-        
+
     def print(self) -> str:
-        str = ""
+        line = ""
         for c in self.output_array:
-            str+=c
-        return str
+            line+=c
+        return line

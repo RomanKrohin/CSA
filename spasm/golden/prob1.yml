@@ -1,0 +1,108 @@
+in_source: |-
+  _data
+      sum = 0
+      iterator = 0
+      limit = 1000
+
+  _programme
+      @ start:
+          push sum
+          push iterator
+          jmp loop
+
+      @ loop:
+          incr
+          push limit
+          jeq end
+          pop
+          mod 3
+          push 0
+          jeq tmp
+          pop
+          pop
+          mod 5
+          push 0
+          jeq tmp
+          pop
+          pop
+          jmp loop
+
+      @ tmp:
+          pop
+          pop
+          load iterator
+          push iterator
+          add
+          load sum
+          pop
+          pop
+          push sum
+          push iterator
+          jmp loop 
+
+      @ end:
+          pop
+          pop
+          hlt
+in_stdin: |-
+  []
+out_log: |
+  INFO    machine:configurate   [['JMP', 2, 0], ['JMP', 3, 0], ['READ', 0, 0], ['PUSH', 0, 0], ['JEQ', 9, 0], ['POP', 0, 0], ['PRINT', 0, 0], ['JMP', 3, 0], ['HLT', 0, 0], ['JMP', 2, 0], ['JMP', 3, 0], ['READ', 0, 0], ['PUSH', 0, 0], ['JEQ', 9, 0], ['POP', 0, 0], ['PRINT', 0, 0], ['JMP', 3, 0], ['HLT', 0, 0], ['INIT', 0, 0], ['INIT', 1, 0], ['INIT', 2, 1000], ['JMP', 2, 0], ['PUSH', 0, 1], ['PUSH', 1, 1], ['JMP', 3, 0], ['INCR', 0, 0], ['PUSH', 2, 1], ['JEQ', 9, 0], ['POP', 0, 0], ['MOD', 3, 0], ['PUSH', 0, 0], ['JEQ', 41, 0], ['POP', 0, 0], ['POP', 0, 0], ['MOD', 5, 0], ['PUSH', 0, 0], ['JEQ', 41, 0], ['POP', 0, 0], ['POP', 0, 0], ['JMP', 3, 0], ['POP', 0, 0], ['POP', 0, 0], ['LOAD', 1, 0], ['PUSH', 1, 1], ['ADD', 0, 0], ['LOAD', 0, 0], ['POP', 0, 0], ['POP', 0, 0], ['PUSH', 0, 1], ['PUSH', 1, 1], ['JMP', 3, 0], ['POP', 0, 0], ['POP', 0, 0], ['HLT', 0, 0]]
+  INFO    control_unit:process       Count of instructions 0 | Command pointer 0 
+  INFO    control_unit:process       Executing JMP ADR 2
+  INFO    control_unit:process       []
+  INFO    control_unit:process       Count of instructions 1 | Command pointer 1 
+  INFO    control_unit:process       Executing JMP ADR 3
+  INFO    control_unit:process       []
+  INFO    control_unit:process       Count of instructions 2 | Command pointer 2 
+  INFO    control_unit:process       Executing READ VALUE 91
+  INFO    control_unit:process       [91]
+  INFO    control_unit:process       Count of instructions 3 | Command pointer 3 
+  INFO    control_unit:process       Executing PUSH VALUE #0
+  INFO    control_unit:process       [91, 0]
+  INFO    control_unit:process       Count of instructions 4 | Command pointer 4 
+  INFO    alu:eq            Executing COMPARE == 91 and 0 | ALU result=0 | zero=False | result=False
+  INFO    control_unit:process       Executing JEQ ADR 9
+  INFO    control_unit:process       [91, 0]
+  INFO    control_unit:process       Count of instructions 5 | Command pointer 5 
+  INFO    control_unit:process       Executing POP
+  INFO    control_unit:process       [91]
+  INFO    control_unit:process       Count of instructions 6 | Command pointer 6 
+  INFO    control_unit:process       Executing PRINT VALUE [
+  INFO    control_unit:process       []
+  INFO    control_unit:process       Count of instructions 7 | Command pointer 7 
+  INFO    control_unit:process       Executing JMP ADR 3
+  INFO    control_unit:process       []
+  INFO    control_unit:process       Count of instructions 8 | Command pointer 2 
+  INFO    control_unit:process       Executing READ VALUE 93
+  INFO    control_unit:process       [93]
+  INFO    control_unit:process       Count of instructions 9 | Command pointer 3 
+  INFO    control_unit:process       Executing PUSH VALUE #0
+  INFO    control_unit:process       [93, 0]
+  INFO    control_unit:process       Count of instructions 10 | Command pointer 4 
+  INFO    alu:eq            Executing COMPARE == 93 and 0 | ALU result=0 | zero=False | result=False
+  INFO    control_unit:process       Executing JEQ ADR 9
+  INFO    control_unit:process       [93, 0]
+  INFO    control_unit:process       Count of instructions 11 | Command pointer 5 
+  INFO    control_unit:process       Executing POP
+  INFO    control_unit:process       [93]
+  INFO    control_unit:process       Count of instructions 12 | Command pointer 6 
+  INFO    control_unit:process       Executing PRINT VALUE ]
+  INFO    control_unit:process       []
+  INFO    control_unit:process       Count of instructions 13 | Command pointer 7 
+  INFO    control_unit:process       Executing JMP ADR 3
+  INFO    control_unit:process       []
+  INFO    control_unit:process       Count of instructions 14 | Command pointer 2 
+  INFO    control_unit:process       Executing READ VALUE 0
+  INFO    control_unit:process       [0]
+  INFO    control_unit:process       Count of instructions 15 | Command pointer 3 
+  INFO    control_unit:process       Executing PUSH VALUE #0
+  INFO    control_unit:process       [0, 0]
+  INFO    control_unit:process       Count of instructions 16 | Command pointer 4 
+  INFO    alu:eq            Executing COMPARE == 0 and 0 | ALU result=1 | zero=False | result=False
+  INFO    control_unit:process       Executing JEQ ADR 9
+  INFO    control_unit:process       [0, 0]
+  INFO    control_unit:process       Count of instructions 17 | Command pointer 8 
+  INFO    control_unit:process       Executing HLT
+  INFO    control_unit:process       [0, 0]
+  INFO    control_unit:process       Count of instructions 18 | Command pointer 9 

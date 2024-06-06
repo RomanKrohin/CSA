@@ -1,58 +1,16 @@
 _data
-    adr = 0
-    a = 0
-    c = 0
-    b = 
 
 _programme
     @ start:
-        adr b
-        load adr
         jmp loop
 
     @ loop:
-        push adr
-        incr
         read
         push 0
-        jeq output
-        jne tmp
-    
-    @ tmp:
-        pop
-        load_by_adr
-        load adr
-        push b
-        incr
-        load b
-        jmp loop
-
-    @ output:
-        pop
-        pop
-        pop
-        adr b
-        load adr
-        jmp loopOutput
-
-    @ loopOutput:
-        push adr
-        incr
-        push_by_adr
-        print
-        push a
-        incr
-        push b
-        jne tmpOutput
         jeq end
-
-    @ tmpOutput:
         pop
-        load a
-        load adr
-        jmp loopOutput
+        print
+        jmp loop
 
     @ end:
         hlt
-
-

@@ -1,7 +1,12 @@
-from translate.Parser import run
 from cpu.machine import Machine
+from translate.parser import run
+
+
+def start_work(file: str, in_file: str) -> None:
+    machine = Machine()
+    machine.configurate(run(file), in_file)
+    machine.run()
+
 
 if __name__ == "__main__":
-    machine = Machine()
-    machine.configurate(run("examples/prob1.SPASM"))
-    machine.run()
+    start_work("examples/Hello_user_name.SPASM", "../input/input.txt")
