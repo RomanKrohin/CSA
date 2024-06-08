@@ -34,7 +34,7 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
-        python-version: '3.x' 
+        python-version: '3.x'
 
     - name: Install dependencies
       run: |
@@ -45,4 +45,4 @@ jobs:
     - name: Run tests
       run: |
         poetry run coverage run -m pytest . -v
-       poetry run coverage report --omit='/usr/lib/python3/dist-packages/*' -m
+        poetry run coverage report --omit='/usr/lib/python3/dist-packages/*' -m
