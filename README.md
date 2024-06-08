@@ -158,3 +158,85 @@ var_or_number       ::= value | name_of_variable
 - Парсит лейбы, перменныые и инсрукции
 - Базово проверяет синтаксис
 - Траслирует код в набор простых команд и группирует их в список списков ```[[opcode_1, operand_11, operand_12], [opcode_2, operand_21, operand_22], ...]```
+
+## Модель процессора
+
+## Тестирование
+
+- Тестирование происходит при помощи ```pytest```
+- [Реализация](spasm/golden_test.py)
+- Файлы утилит находятся в [директрии](spasm/golden/)
+- Команда для запуска: ```poetry run coverage run -m pytest . -v```
+
+### Linter
+
+```
+lint:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install ruff
+
+    - name: Run ruff
+      run: |
+        ruff check .
+```
+
+### Tests
+
+```
+test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+
+    - name: Install dependencies
+      run: |
+        cd spasm
+        python -m pip install --upgrade pip
+        pip install poetry
+        poetry install
+
+    - name: Run tests
+      run: |
+        cd spasm
+        poetry run coverage run -m pytest . -v
+        poetry run coverage report --omit='/usr/lib/python3/dist-packages/*' -m
+```
+
+### Output
+
+```
+======================== test session starts =========================
+platform linux -- Python 3.10.12, pytest-8.2.2, pluggy-1.5.0 -- /usr/bin/python3
+cachedir: .pytest_cache
+rootdir: /home/roman/roman/work/CSA/spasm
+configfile: pyproject.toml
+plugins: yaml-1.2.1, goldie-0.1.5, golden-0.2.2, anyio-4.3.0
+collected 4 items                                                    
+
+golden_test.py::test_machine_cat[golden/cat.yml] PASSED        [ 25%]
+golden_test.py::test_machine_cat[golden/hello_username.yml] PASSED [ 50%]
+golden_test.py::test_machine_cat[golden/prob1.yml] PASSED      [ 75%]
+golden_test.py::test_machine_cat[golden/hello_world.yml] PASSED [100%]
+
+========================= 4 passed in 15.10s =========================
+```
