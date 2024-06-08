@@ -18,7 +18,6 @@ def zero_arguments(arguments : []) -> []:
 def jmp_arguments(arguments : []) -> []:
     if (labels.get(arguments[0]) is None):
         return [arguments[0], (0)]
-    return [labels[arguments[0]], (0)]
 
 def one_argument(arguments : []) -> []:
     return [(int(arguments[0])), (0)]
