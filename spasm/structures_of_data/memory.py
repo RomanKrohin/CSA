@@ -3,7 +3,7 @@ class Memory:
         self.data = {}
 
     def write(self, address: str, value):
-        assert len(self.data) < 2**11, "Memory overflow"  # Changed the comparison to ensure the number of keys is within the limit
+        assert len(self.data) < 2**11, "Memory overflow"
         self.data[address] = value
 
     def read(self, address: str):
