@@ -1,6 +1,5 @@
 from cpu.machine import Machine
-from translate.parser import run
-from translate.parser import reset_globals
+from translate.parser import reset_globals, run
 
 
 def start_work(file: str, in_file: str) -> None:
