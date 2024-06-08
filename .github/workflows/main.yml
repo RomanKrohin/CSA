@@ -44,5 +44,6 @@ jobs:
 
     - name: Run tests
       run: |
+        cd spasm
         poetry run coverage run -m pytest . -v
         poetry run coverage report --omit='/usr/lib/python3/dist-packages/*' -m
