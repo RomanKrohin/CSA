@@ -61,7 +61,7 @@ def pop(self, arg: []) -> str:
 
 
 def jmp(self, arg: []):
-    self.stack_inscrutions.data.clear()
+
     self.command_pointer=int(arg[1])-1
     return f"Executing JMP ADR {int(arg[1])}"
 
@@ -71,7 +71,7 @@ def jeq(self, arg: []) -> str:
     self.stack_memory.pop()
     self.Alu.eq(int(self.stack_memory.peek()), int(self.tmp.peek()))
     if (self.Alu.result==1):
-        self.stack_inscrutions.data.clear()
+
         self.command_pointer=int(arg[1])-1
     self.stack_memory.push(self.tmp.peek())
     self.tmp.pop()
@@ -83,7 +83,7 @@ def jne(self, arg: []) -> str:
     self.stack_memory.pop()
     self.Alu.ne(int(self.stack_memory.peek()), int(self.tmp.peek()))
     if (self.Alu.result==1):
-        self.stack_inscrutions.data.clear()
+
         self.command_pointer=int(arg[1])-1
     self.stack_memory.push(self.tmp.peek())
     self.tmp.pop()
@@ -95,7 +95,7 @@ def jla(self, arg: []) -> str:
     self.stack_memory.pop()
     self.Alu.la(int(self.stack_memory.peek()), int(self.tmp.peek()))
     if (self.Alu.result==1):
-        self.stack_inscrutions.data.clear()
+
         self.command_pointer=int(arg[1])-1
     self.stack_memory.push(self.tmp.peek())
     self.tmp.pop()
@@ -107,7 +107,7 @@ def jle(self, arg: []) -> str:
     self.stack_memory.pop()
     self.Alu.le(int(self.stack_memory.peek()), int(self.tmp.peek()))
     if (self.Alu.result==1):
-        self.stack_inscrutions.data.clear()
+
         self.command_pointer=int(arg[1])-1
     self.stack_memory.push(self.tmp.peek())
     self.tmp.pop()

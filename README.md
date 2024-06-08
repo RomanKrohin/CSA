@@ -161,6 +161,16 @@ var_or_number       ::= value | name_of_variable
 
 ## Модель процессора
 
+```
+python machine.py <bin_filepath> <input_filepath> <output_filepath> <log_filepath>
+```
+
+### Control Unit
+![CU.drawio.svg](scheme/CU.drawio.svg)
+
+### Data path
+![Datapath.drawio.svg](scheme/Datapath.drawio.svg)
+
 ## Тестирование
 
 - Тестирование происходит при помощи ```pytest```
