@@ -10,4 +10,4 @@ def start_work(file: str, in_file: str) -> None:
 
 
 if __name__ == "__main__":
-    start_work("examples/Hello_world_test.SPASM", "../input/input.txt")
+    start_work("examples/prob1.SPASM", "../input/input.txt")

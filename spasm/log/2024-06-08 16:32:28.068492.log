@@ -1,0 +1,26 @@
+control_unit_logger - INFO - INSTRUCTION MEMORY - [['INIT', 0, 0], ['INIT', 1, 0], ['INIT', 2, 1000], ['JMP', 5, 0], ['PUSH', 1, 0], ['PUSH', 1, 1], ['JMP', 0, 'loop'], ['INCR', 0, 0], ['PUSH', 1, 2], ['JEQ', 0, 'end'], ['POP', 0, 0], ['MOD', 0, 3], ['PUSH', 0, 0], ['JEQ', 0, 'tmp'], ['POP', 0, 0], ['POP', 0, 0], ['MOD', 0, 5], ['PUSH', 0, 0], ['JEQ', 0, 'tmp'], ['POP', 0, 0], ['POP', 0, 0], ['JMP', 0, 8], ['POP', 0, 0], ['POP', 0, 0], ['LOAD', 0, 1], ['PUSH', 1, 1], ['ADD', 0, 0], ['LOAD', 0, 0], ['POP', 0, 0], ['POP', 0, 0], ['PUSH', 1, 0], ['PUSH', 1, 1], ['JMP', 0, 8], ['POP', 0, 0], ['POP', 0, 0], ['HLT', 0, 0]]
+control_unit_logger - INFO - CONTROL UNIT - Count of instructions 0 | Command pointer 0 
+control_unit_logger - INFO - INCRUCTIONS - Executing INIT ADR 0 VALUE 0
+control_unit_logger - INFO - STACK MEMORY - []
+control_unit_logger - INFO - CONTROL UNIT - Count of instructions 1 | Command pointer 1 
+control_unit_logger - INFO - INCRUCTIONS - Executing INIT ADR 1 VALUE 0
+control_unit_logger - INFO - STACK MEMORY - []
+control_unit_logger - INFO - CONTROL UNIT - Count of instructions 2 | Command pointer 2 
+control_unit_logger - INFO - INCRUCTIONS - Executing INIT ADR 2 VALUE 1000
+control_unit_logger - INFO - STACK MEMORY - []
+control_unit_logger - INFO - CONTROL UNIT - Count of instructions 3 | Command pointer 3 
+control_unit_logger - INFO - INCRUCTIONS - Executing JMP ADR 5
+control_unit_logger - INFO - STACK MEMORY - []
+control_unit_logger - INFO - CONTROL UNIT - Count of instructions 4 | Command pointer 4 
+control_unit_logger - INFO - INCRUCTIONS - Executing PUSH VALUE #1
+control_unit_logger - INFO - STACK MEMORY - [1]
+control_unit_logger - INFO - CONTROL UNIT - Count of instructions 5 | Command pointer 5 
+control_unit_logger - INFO - INCRUCTIONS - Executing PUSH VALUE 1
+control_unit_logger - INFO - STACK MEMORY - [1, 0]
+control_unit_logger - INFO - CONTROL UNIT - Count of instructions 6 | Command pointer 6 
+control_unit_logger - INFO - INCRUCTIONS - Executing JMP ADR 0
+control_unit_logger - INFO - STACK MEMORY - [1, 0]
+control_unit_logger - INFO - CONTROL UNIT - Count of instructions 7 | Command pointer -1 
+control_unit_logger - INFO - INCRUCTIONS - Executing HLT
+control_unit_logger - INFO - STACK MEMORY - [1, 0]
+control_unit_logger - INFO - CONTROL UNIT - Count of instructions 8 | Command pointer 0 

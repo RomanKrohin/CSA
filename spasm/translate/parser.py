@@ -118,6 +118,8 @@ def run(file: str) -> str:
                         machine_code.append(split_argument_command(string_without_newline_comments))
                 else:
                     memory_pointer= set_var_argument(string_without_newline_comments.replace("=","").replace("  "," ").split(" "), memory_pointer)
+    for i in machine_code:
+        validate_instruction_size(i)
     return machine_code
 
 def split_argument_command(command_argument) -> []:
@@ -126,6 +128,11 @@ def split_argument_command(command_argument) -> []:
     return ([commands[command_argument_list[0]]["code"],
             processor_result[0],
             processor_result[1]])
+
+def validate_instruction_size(instruction: list) -> None:
+    assert 0 <= instruction[1] < (1 << 8), "Command code exceeds 1 byte"
+    assert 0 <= instruction[1] < (1 << 48), "Operand value exceeds 6 byte"
+    assert 0 <= instruction[2] < (1 << 48), "Operand value exceeds 6 bytes"
 
 def reset_globals() -> None:
     global variables, labels, labels_dyn, dynamic_names, machine_code
