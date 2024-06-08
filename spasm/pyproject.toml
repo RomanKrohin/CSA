@@ -6,7 +6,7 @@ authors = ["Roman Krohin"]
 license = "MIT"
 
 [tool.poetry.dependencies]
-python = "^3.12"
+python = "3.10.12"
 
 [tool.isort]
 profile = "black"
@@ -25,7 +25,7 @@ build-backend = "poetry.core.masonry.api"
 [tool.pytest.ini_options]
 enable_assertion_pass_hook = true
 addopts = "--doctest-modules"
-log_format = "%(levelname)-7s %(module)s:%(funcName)-13s %(message)s"
+log_format = "%(name)s - %(levelname)s - %(location)s - %(message)s"
 
 [tool.ruff]
 line-length = 120

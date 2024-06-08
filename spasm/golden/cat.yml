@@ -18,119 +18,119 @@ in_source: |-
 in_stdin: |-
   Roman
 out_log: |
-  INFO    machine:configurate   [['JMP', 2, 0], ['JMP', 3, 0], ['READ', 0, 0], ['PUSH', 0, 0], ['JEQ', 9, 0], ['POP', 0, 0], ['PRINT', 0, 0], ['JMP', 3, 0], ['HLT', 0, 0]]
-  INFO    control_unit:process       Count of instructions 0 | Command pointer 0 
-  INFO    control_unit:process       Executing JMP ADR 2
-  INFO    control_unit:process       []
-  INFO    control_unit:process       Count of instructions 1 | Command pointer 1 
-  INFO    control_unit:process       Executing JMP ADR 3
-  INFO    control_unit:process       []
-  INFO    control_unit:process       Count of instructions 2 | Command pointer 2 
-  INFO    control_unit:process       Executing READ VALUE 82
-  INFO    control_unit:process       [82]
-  INFO    control_unit:process       Count of instructions 3 | Command pointer 3 
-  INFO    control_unit:process       Executing PUSH VALUE #0
-  INFO    control_unit:process       [82, 0]
-  INFO    control_unit:process       Count of instructions 4 | Command pointer 4 
-  INFO    alu:eq            Executing COMPARE == 82 and 0 | ALU result=0 | zero=False | result=False
-  INFO    control_unit:process       Executing JEQ ADR 9
-  INFO    control_unit:process       [82, 0]
-  INFO    control_unit:process       Count of instructions 5 | Command pointer 5 
-  INFO    control_unit:process       Executing POP
-  INFO    control_unit:process       [82]
-  INFO    control_unit:process       Count of instructions 6 | Command pointer 6 
-  INFO    control_unit:process       Executing PRINT VALUE R
-  INFO    control_unit:process       []
-  INFO    control_unit:process       Count of instructions 7 | Command pointer 7 
-  INFO    control_unit:process       Executing JMP ADR 3
-  INFO    control_unit:process       []
-  INFO    control_unit:process       Count of instructions 8 | Command pointer 2 
-  INFO    control_unit:process       Executing READ VALUE 111
-  INFO    control_unit:process       [111]
-  INFO    control_unit:process       Count of instructions 9 | Command pointer 3 
-  INFO    control_unit:process       Executing PUSH VALUE #0
-  INFO    control_unit:process       [111, 0]
-  INFO    control_unit:process       Count of instructions 10 | Command pointer 4 
-  INFO    alu:eq            Executing COMPARE == 111 and 0 | ALU result=0 | zero=False | result=False
-  INFO    control_unit:process       Executing JEQ ADR 9
-  INFO    control_unit:process       [111, 0]
-  INFO    control_unit:process       Count of instructions 11 | Command pointer 5 
-  INFO    control_unit:process       Executing POP
-  INFO    control_unit:process       [111]
-  INFO    control_unit:process       Count of instructions 12 | Command pointer 6 
-  INFO    control_unit:process       Executing PRINT VALUE o
-  INFO    control_unit:process       []
-  INFO    control_unit:process       Count of instructions 13 | Command pointer 7 
-  INFO    control_unit:process       Executing JMP ADR 3
-  INFO    control_unit:process       []
-  INFO    control_unit:process       Count of instructions 14 | Command pointer 2 
-  INFO    control_unit:process       Executing READ VALUE 109
-  INFO    control_unit:process       [109]
-  INFO    control_unit:process       Count of instructions 15 | Command pointer 3 
-  INFO    control_unit:process       Executing PUSH VALUE #0
-  INFO    control_unit:process       [109, 0]
-  INFO    control_unit:process       Count of instructions 16 | Command pointer 4 
-  INFO    alu:eq            Executing COMPARE == 109 and 0 | ALU result=0 | zero=False | result=False
-  INFO    control_unit:process       Executing JEQ ADR 9
-  INFO    control_unit:process       [109, 0]
-  INFO    control_unit:process       Count of instructions 17 | Command pointer 5 
-  INFO    control_unit:process       Executing POP
-  INFO    control_unit:process       [109]
-  INFO    control_unit:process       Count of instructions 18 | Command pointer 6 
-  INFO    control_unit:process       Executing PRINT VALUE m
-  INFO    control_unit:process       []
-  INFO    control_unit:process       Count of instructions 19 | Command pointer 7 
-  INFO    control_unit:process       Executing JMP ADR 3
-  INFO    control_unit:process       []
-  INFO    control_unit:process       Count of instructions 20 | Command pointer 2 
-  INFO    control_unit:process       Executing READ VALUE 97
-  INFO    control_unit:process       [97]
-  INFO    control_unit:process       Count of instructions 21 | Command pointer 3 
-  INFO    control_unit:process       Executing PUSH VALUE #0
-  INFO    control_unit:process       [97, 0]
-  INFO    control_unit:process       Count of instructions 22 | Command pointer 4 
-  INFO    alu:eq            Executing COMPARE == 97 and 0 | ALU result=0 | zero=False | result=False
-  INFO    control_unit:process       Executing JEQ ADR 9
-  INFO    control_unit:process       [97, 0]
-  INFO    control_unit:process       Count of instructions 23 | Command pointer 5 
-  INFO    control_unit:process       Executing POP
-  INFO    control_unit:process       [97]
-  INFO    control_unit:process       Count of instructions 24 | Command pointer 6 
-  INFO    control_unit:process       Executing PRINT VALUE a
-  INFO    control_unit:process       []
-  INFO    control_unit:process       Count of instructions 25 | Command pointer 7 
-  INFO    control_unit:process       Executing JMP ADR 3
-  INFO    control_unit:process       []
-  INFO    control_unit:process       Count of instructions 26 | Command pointer 2 
-  INFO    control_unit:process       Executing READ VALUE 110
-  INFO    control_unit:process       [110]
-  INFO    control_unit:process       Count of instructions 27 | Command pointer 3 
-  INFO    control_unit:process       Executing PUSH VALUE #0
-  INFO    control_unit:process       [110, 0]
-  INFO    control_unit:process       Count of instructions 28 | Command pointer 4 
-  INFO    alu:eq            Executing COMPARE == 110 and 0 | ALU result=0 | zero=False | result=False
-  INFO    control_unit:process       Executing JEQ ADR 9
-  INFO    control_unit:process       [110, 0]
-  INFO    control_unit:process       Count of instructions 29 | Command pointer 5 
-  INFO    control_unit:process       Executing POP
-  INFO    control_unit:process       [110]
-  INFO    control_unit:process       Count of instructions 30 | Command pointer 6 
-  INFO    control_unit:process       Executing PRINT VALUE n
-  INFO    control_unit:process       []
-  INFO    control_unit:process       Count of instructions 31 | Command pointer 7 
-  INFO    control_unit:process       Executing JMP ADR 3
-  INFO    control_unit:process       []
-  INFO    control_unit:process       Count of instructions 32 | Command pointer 2 
-  INFO    control_unit:process       Executing READ VALUE 0
-  INFO    control_unit:process       [0]
-  INFO    control_unit:process       Count of instructions 33 | Command pointer 3 
-  INFO    control_unit:process       Executing PUSH VALUE #0
-  INFO    control_unit:process       [0, 0]
-  INFO    control_unit:process       Count of instructions 34 | Command pointer 4 
-  INFO    alu:eq            Executing COMPARE == 0 and 0 | ALU result=1 | zero=False | result=False
-  INFO    control_unit:process       Executing JEQ ADR 9
-  INFO    control_unit:process       [0, 0]
-  INFO    control_unit:process       Count of instructions 35 | Command pointer 8 
-  INFO    control_unit:process       Executing HLT
-  INFO    control_unit:process       [0, 0]
-  INFO    control_unit:process       Count of instructions 36 | Command pointer 9 
+  control_unit_logger - INFO - INSTRUCTION MEMORY - [['JMP', 2, 0], ['JMP', 3, 0], ['READ', 0, 0], ['PUSH', 0, 0], ['JEQ', 9, 0], ['POP', 0, 0], ['PRINT', 0, 0], ['JMP', 3, 0], ['HLT', 0, 0]]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 0 | Command pointer 0 
+  control_unit_logger - INFO - INCRUCTIONS - Executing JMP ADR 2
+  control_unit_logger - INFO - STACK MEMORY - []
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 1 | Command pointer 1 
+  control_unit_logger - INFO - INCRUCTIONS - Executing JMP ADR 3
+  control_unit_logger - INFO - STACK MEMORY - []
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 2 | Command pointer 2 
+  control_unit_logger - INFO - INCRUCTIONS - Executing READ VALUE 82
+  control_unit_logger - INFO - STACK MEMORY - [82]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 3 | Command pointer 3 
+  control_unit_logger - INFO - INCRUCTIONS - Executing PUSH VALUE #0
+  control_unit_logger - INFO - STACK MEMORY - [82, 0]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 4 | Command pointer 4 
+  control_unit_logger - INFO - ALU - Executing COMPARE == 82 and 0 | ALU result=0 | zero=False | result=False
+  control_unit_logger - INFO - INCRUCTIONS - Executing JEQ ADR 9
+  control_unit_logger - INFO - STACK MEMORY - [82, 0]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 5 | Command pointer 5 
+  control_unit_logger - INFO - INCRUCTIONS - Executing POP
+  control_unit_logger - INFO - STACK MEMORY - [82]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 6 | Command pointer 6 
+  control_unit_logger - INFO - INCRUCTIONS - Executing PRINT VALUE R
+  control_unit_logger - INFO - STACK MEMORY - []
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 7 | Command pointer 7 
+  control_unit_logger - INFO - INCRUCTIONS - Executing JMP ADR 3
+  control_unit_logger - INFO - STACK MEMORY - []
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 8 | Command pointer 2 
+  control_unit_logger - INFO - INCRUCTIONS - Executing READ VALUE 111
+  control_unit_logger - INFO - STACK MEMORY - [111]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 9 | Command pointer 3 
+  control_unit_logger - INFO - INCRUCTIONS - Executing PUSH VALUE #0
+  control_unit_logger - INFO - STACK MEMORY - [111, 0]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 10 | Command pointer 4 
+  control_unit_logger - INFO - ALU - Executing COMPARE == 111 and 0 | ALU result=0 | zero=False | result=False
+  control_unit_logger - INFO - INCRUCTIONS - Executing JEQ ADR 9
+  control_unit_logger - INFO - STACK MEMORY - [111, 0]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 11 | Command pointer 5 
+  control_unit_logger - INFO - INCRUCTIONS - Executing POP
+  control_unit_logger - INFO - STACK MEMORY - [111]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 12 | Command pointer 6 
+  control_unit_logger - INFO - INCRUCTIONS - Executing PRINT VALUE o
+  control_unit_logger - INFO - STACK MEMORY - []
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 13 | Command pointer 7 
+  control_unit_logger - INFO - INCRUCTIONS - Executing JMP ADR 3
+  control_unit_logger - INFO - STACK MEMORY - []
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 14 | Command pointer 2 
+  control_unit_logger - INFO - INCRUCTIONS - Executing READ VALUE 109
+  control_unit_logger - INFO - STACK MEMORY - [109]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 15 | Command pointer 3 
+  control_unit_logger - INFO - INCRUCTIONS - Executing PUSH VALUE #0
+  control_unit_logger - INFO - STACK MEMORY - [109, 0]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 16 | Command pointer 4 
+  control_unit_logger - INFO - ALU - Executing COMPARE == 109 and 0 | ALU result=0 | zero=False | result=False
+  control_unit_logger - INFO - INCRUCTIONS - Executing JEQ ADR 9
+  control_unit_logger - INFO - STACK MEMORY - [109, 0]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 17 | Command pointer 5 
+  control_unit_logger - INFO - INCRUCTIONS - Executing POP
+  control_unit_logger - INFO - STACK MEMORY - [109]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 18 | Command pointer 6 
+  control_unit_logger - INFO - INCRUCTIONS - Executing PRINT VALUE m
+  control_unit_logger - INFO - STACK MEMORY - []
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 19 | Command pointer 7 
+  control_unit_logger - INFO - INCRUCTIONS - Executing JMP ADR 3
+  control_unit_logger - INFO - STACK MEMORY - []
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 20 | Command pointer 2 
+  control_unit_logger - INFO - INCRUCTIONS - Executing READ VALUE 97
+  control_unit_logger - INFO - STACK MEMORY - [97]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 21 | Command pointer 3 
+  control_unit_logger - INFO - INCRUCTIONS - Executing PUSH VALUE #0
+  control_unit_logger - INFO - STACK MEMORY - [97, 0]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 22 | Command pointer 4 
+  control_unit_logger - INFO - ALU - Executing COMPARE == 97 and 0 | ALU result=0 | zero=False | result=False
+  control_unit_logger - INFO - INCRUCTIONS - Executing JEQ ADR 9
+  control_unit_logger - INFO - STACK MEMORY - [97, 0]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 23 | Command pointer 5 
+  control_unit_logger - INFO - INCRUCTIONS - Executing POP
+  control_unit_logger - INFO - STACK MEMORY - [97]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 24 | Command pointer 6 
+  control_unit_logger - INFO - INCRUCTIONS - Executing PRINT VALUE a
+  control_unit_logger - INFO - STACK MEMORY - []
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 25 | Command pointer 7 
+  control_unit_logger - INFO - INCRUCTIONS - Executing JMP ADR 3
+  control_unit_logger - INFO - STACK MEMORY - []
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 26 | Command pointer 2 
+  control_unit_logger - INFO - INCRUCTIONS - Executing READ VALUE 110
+  control_unit_logger - INFO - STACK MEMORY - [110]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 27 | Command pointer 3 
+  control_unit_logger - INFO - INCRUCTIONS - Executing PUSH VALUE #0
+  control_unit_logger - INFO - STACK MEMORY - [110, 0]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 28 | Command pointer 4 
+  control_unit_logger - INFO - ALU - Executing COMPARE == 110 and 0 | ALU result=0 | zero=False | result=False
+  control_unit_logger - INFO - INCRUCTIONS - Executing JEQ ADR 9
+  control_unit_logger - INFO - STACK MEMORY - [110, 0]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 29 | Command pointer 5 
+  control_unit_logger - INFO - INCRUCTIONS - Executing POP
+  control_unit_logger - INFO - STACK MEMORY - [110]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 30 | Command pointer 6 
+  control_unit_logger - INFO - INCRUCTIONS - Executing PRINT VALUE n
+  control_unit_logger - INFO - STACK MEMORY - []
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 31 | Command pointer 7 
+  control_unit_logger - INFO - INCRUCTIONS - Executing JMP ADR 3
+  control_unit_logger - INFO - STACK MEMORY - []
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 32 | Command pointer 2 
+  control_unit_logger - INFO - INCRUCTIONS - Executing READ VALUE 0
+  control_unit_logger - INFO - STACK MEMORY - [0]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 33 | Command pointer 3 
+  control_unit_logger - INFO - INCRUCTIONS - Executing PUSH VALUE #0
+  control_unit_logger - INFO - STACK MEMORY - [0, 0]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 34 | Command pointer 4 
+  control_unit_logger - INFO - ALU - Executing COMPARE == 0 and 0 | ALU result=1 | zero=False | result=False
+  control_unit_logger - INFO - INCRUCTIONS - Executing JEQ ADR 9
+  control_unit_logger - INFO - STACK MEMORY - [0, 0]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 35 | Command pointer 8 
+  control_unit_logger - INFO - INCRUCTIONS - Executing HLT
+  control_unit_logger - INFO - STACK MEMORY - [0, 0]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 36 | Command pointer 9 

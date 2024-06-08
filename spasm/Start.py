@@ -1,12 +1,14 @@
 from cpu.machine import Machine
 from translate.parser import run
+from translate.parser import reset_globals
 
 
 def start_work(file: str, in_file: str) -> None:
     machine = Machine()
     machine.configurate(run(file), in_file)
+    reset_globals()
     machine.run()
 
 
 if __name__ == "__main__":
-    start_work("examples/Input_test.SPASM", "../input/input.txt")
+    start_work("examples/Hello_world_test.SPASM", "../input/input.txt")

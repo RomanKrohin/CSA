@@ -126,3 +126,11 @@ def split_argument_command(command_argument) -> []:
     return ([commands[command_argument_list[0]]["code"],
             processor_result[0],
             processor_result[1]])
+    
+def reset_globals() -> None:
+    global variables, labels, labels_dyn, dynamic_names, machine_code
+    variables = {}
+    labels = {}
+    labels_dyn = []
+    dynamic_names = {}
+    machine_code = []

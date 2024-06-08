@@ -37,3 +37,4 @@ class Machine:
 
     def run(self):
         self.CU.process()
+        self.CU.instruction_memory=[]

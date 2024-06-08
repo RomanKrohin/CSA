@@ -1,0 +1,560 @@
+in_source: |-
+  _data
+    adr = 0
+    a = 0
+    c = 0
+    b = Hello world!
+
+  _programme
+    @ start:
+      adr b
+      load adr
+      jmp loop
+
+    @ loop:
+      push adr
+      incr
+      push_by_adr
+      print
+      push a
+      incr
+      push b
+      jne tmp
+      jeq end
+
+    @ tmp:
+      pop
+      load a
+      load adr
+      jmp loop
+
+    @ end:
+      hlt
+in_stdin: |-
+  Hello world!
+out_log: |
+  control_unit_logger - INFO - INSTRUCTION MEMORY - [['INIT', 0, 0], ['INIT', 1, 0], ['INIT', 2, 0], ['INIT', 3, 12], ['INIT', 4, 72], ['INIT', 5, 101], ['INIT', 6, 108], ['INIT', 7, 108], ['INIT', 8, 111], ['INIT', 9, 32], ['INIT', 10, 119], ['INIT', 11, 111], ['INIT', 12, 114], ['INIT', 13, 108], ['INIT', 14, 100], ['INIT', 15, 33], ['JMP', 18, 0], ['ADR', 3, 0], ['LOAD', 0, 0], ['JMP', 21, 0], ['PUSH', 0, 1], ['INCR', 0, 0], ['PADR', 0, 0], ['PRINT', 0, 0], ['PUSH', 1, 1], ['INCR', 0, 0], ['PUSH', 3, 1], ['JNE', 30, 0], ['JEQ', 34, 0], ['POP', 0, 0], ['LOAD', 1, 0], ['LOAD', 0, 0], ['JMP', 21, 0], ['HLT', 0, 0]]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 0 | Command pointer 0 
+  control_unit_logger - INFO - INCRUCTIONS - Executing INIT ADR 0 VALUE 0
+  control_unit_logger - INFO - STACK MEMORY - []
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 1 | Command pointer 1 
+  control_unit_logger - INFO - INCRUCTIONS - Executing INIT ADR 1 VALUE 0
+  control_unit_logger - INFO - STACK MEMORY - []
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 2 | Command pointer 2 
+  control_unit_logger - INFO - INCRUCTIONS - Executing INIT ADR 2 VALUE 0
+  control_unit_logger - INFO - STACK MEMORY - []
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 3 | Command pointer 3 
+  control_unit_logger - INFO - INCRUCTIONS - Executing INIT ADR 3 VALUE 12
+  control_unit_logger - INFO - STACK MEMORY - []
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 4 | Command pointer 4 
+  control_unit_logger - INFO - INCRUCTIONS - Executing INIT ADR 4 VALUE 72
+  control_unit_logger - INFO - STACK MEMORY - []
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 5 | Command pointer 5 
+  control_unit_logger - INFO - INCRUCTIONS - Executing INIT ADR 5 VALUE 101
+  control_unit_logger - INFO - STACK MEMORY - []
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 6 | Command pointer 6 
+  control_unit_logger - INFO - INCRUCTIONS - Executing INIT ADR 6 VALUE 108
+  control_unit_logger - INFO - STACK MEMORY - []
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 7 | Command pointer 7 
+  control_unit_logger - INFO - INCRUCTIONS - Executing INIT ADR 7 VALUE 108
+  control_unit_logger - INFO - STACK MEMORY - []
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 8 | Command pointer 8 
+  control_unit_logger - INFO - INCRUCTIONS - Executing INIT ADR 8 VALUE 111
+  control_unit_logger - INFO - STACK MEMORY - []
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 9 | Command pointer 9 
+  control_unit_logger - INFO - INCRUCTIONS - Executing INIT ADR 9 VALUE 32
+  control_unit_logger - INFO - STACK MEMORY - []
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 10 | Command pointer 10 
+  control_unit_logger - INFO - INCRUCTIONS - Executing INIT ADR 10 VALUE 119
+  control_unit_logger - INFO - STACK MEMORY - []
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 11 | Command pointer 11 
+  control_unit_logger - INFO - INCRUCTIONS - Executing INIT ADR 11 VALUE 111
+  control_unit_logger - INFO - STACK MEMORY - []
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 12 | Command pointer 12 
+  control_unit_logger - INFO - INCRUCTIONS - Executing INIT ADR 12 VALUE 114
+  control_unit_logger - INFO - STACK MEMORY - []
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 13 | Command pointer 13 
+  control_unit_logger - INFO - INCRUCTIONS - Executing INIT ADR 13 VALUE 108
+  control_unit_logger - INFO - STACK MEMORY - []
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 14 | Command pointer 14 
+  control_unit_logger - INFO - INCRUCTIONS - Executing INIT ADR 14 VALUE 100
+  control_unit_logger - INFO - STACK MEMORY - []
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 15 | Command pointer 15 
+  control_unit_logger - INFO - INCRUCTIONS - Executing INIT ADR 15 VALUE 33
+  control_unit_logger - INFO - STACK MEMORY - []
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 16 | Command pointer 16 
+  control_unit_logger - INFO - INCRUCTIONS - Executing JMP ADR 18
+  control_unit_logger - INFO - STACK MEMORY - []
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 17 | Command pointer 17 
+  control_unit_logger - INFO - INCRUCTIONS - Executing PUSH VALUE #3
+  control_unit_logger - INFO - STACK MEMORY - [3]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 18 | Command pointer 18 
+  control_unit_logger - INFO - INCRUCTIONS - Executing LOAD ADR 0
+  control_unit_logger - INFO - STACK MEMORY - []
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 19 | Command pointer 19 
+  control_unit_logger - INFO - INCRUCTIONS - Executing JMP ADR 21
+  control_unit_logger - INFO - STACK MEMORY - []
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 20 | Command pointer 20 
+  control_unit_logger - INFO - INCRUCTIONS - Executing PUSH VALUE 0
+  control_unit_logger - INFO - STACK MEMORY - [3]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 21 | Command pointer 21 
+  control_unit_logger - INFO - ALU - Executing ADD 3 and 1 | ALU result=4 | zero=False | result=False
+  control_unit_logger - INFO - INCRUCTIONS - Executing INCR
+  control_unit_logger - INFO - STACK MEMORY - [4]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 22 | Command pointer 22 
+  control_unit_logger - INFO - INCRUCTIONS - Executing PADR ADR 4
+  control_unit_logger - INFO - STACK MEMORY - [4, 72]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 23 | Command pointer 23 
+  control_unit_logger - INFO - INCRUCTIONS - Executing PRINT VALUE H
+  control_unit_logger - INFO - STACK MEMORY - [4]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 24 | Command pointer 24 
+  control_unit_logger - INFO - INCRUCTIONS - Executing PUSH VALUE 1
+  control_unit_logger - INFO - STACK MEMORY - [4, 0]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 25 | Command pointer 25 
+  control_unit_logger - INFO - ALU - Executing ADD 0 and 1 | ALU result=1 | zero=False | result=False
+  control_unit_logger - INFO - INCRUCTIONS - Executing INCR
+  control_unit_logger - INFO - STACK MEMORY - [4, 1]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 26 | Command pointer 26 
+  control_unit_logger - INFO - INCRUCTIONS - Executing PUSH VALUE 3
+  control_unit_logger - INFO - STACK MEMORY - [4, 1, 12]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 27 | Command pointer 27 
+  control_unit_logger - INFO - ALU - Executing COMPARE != 1 and 12 | ALU result=1 | zero=False | result=False
+  control_unit_logger - INFO - INCRUCTIONS - Executing JNE ADR 30
+  control_unit_logger - INFO - STACK MEMORY - [4, 1, 12]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 28 | Command pointer 29 
+  control_unit_logger - INFO - INCRUCTIONS - Executing POP
+  control_unit_logger - INFO - STACK MEMORY - [4, 1]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 29 | Command pointer 30 
+  control_unit_logger - INFO - INCRUCTIONS - Executing LOAD ADR 1
+  control_unit_logger - INFO - STACK MEMORY - [4]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 30 | Command pointer 31 
+  control_unit_logger - INFO - INCRUCTIONS - Executing LOAD ADR 0
+  control_unit_logger - INFO - STACK MEMORY - []
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 31 | Command pointer 32 
+  control_unit_logger - INFO - INCRUCTIONS - Executing JMP ADR 21
+  control_unit_logger - INFO - STACK MEMORY - []
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 32 | Command pointer 20 
+  control_unit_logger - INFO - INCRUCTIONS - Executing PUSH VALUE 0
+  control_unit_logger - INFO - STACK MEMORY - [4]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 33 | Command pointer 21 
+  control_unit_logger - INFO - ALU - Executing ADD 4 and 1 | ALU result=5 | zero=False | result=False
+  control_unit_logger - INFO - INCRUCTIONS - Executing INCR
+  control_unit_logger - INFO - STACK MEMORY - [5]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 34 | Command pointer 22 
+  control_unit_logger - INFO - INCRUCTIONS - Executing PADR ADR 5
+  control_unit_logger - INFO - STACK MEMORY - [5, 101]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 35 | Command pointer 23 
+  control_unit_logger - INFO - INCRUCTIONS - Executing PRINT VALUE e
+  control_unit_logger - INFO - STACK MEMORY - [5]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 36 | Command pointer 24 
+  control_unit_logger - INFO - INCRUCTIONS - Executing PUSH VALUE 1
+  control_unit_logger - INFO - STACK MEMORY - [5, 1]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 37 | Command pointer 25 
+  control_unit_logger - INFO - ALU - Executing ADD 1 and 1 | ALU result=2 | zero=False | result=False
+  control_unit_logger - INFO - INCRUCTIONS - Executing INCR
+  control_unit_logger - INFO - STACK MEMORY - [5, 2]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 38 | Command pointer 26 
+  control_unit_logger - INFO - INCRUCTIONS - Executing PUSH VALUE 3
+  control_unit_logger - INFO - STACK MEMORY - [5, 2, 12]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 39 | Command pointer 27 
+  control_unit_logger - INFO - ALU - Executing COMPARE != 2 and 12 | ALU result=1 | zero=False | result=False
+  control_unit_logger - INFO - INCRUCTIONS - Executing JNE ADR 30
+  control_unit_logger - INFO - STACK MEMORY - [5, 2, 12]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 40 | Command pointer 29 
+  control_unit_logger - INFO - INCRUCTIONS - Executing POP
+  control_unit_logger - INFO - STACK MEMORY - [5, 2]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 41 | Command pointer 30 
+  control_unit_logger - INFO - INCRUCTIONS - Executing LOAD ADR 1
+  control_unit_logger - INFO - STACK MEMORY - [5]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 42 | Command pointer 31 
+  control_unit_logger - INFO - INCRUCTIONS - Executing LOAD ADR 0
+  control_unit_logger - INFO - STACK MEMORY - []
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 43 | Command pointer 32 
+  control_unit_logger - INFO - INCRUCTIONS - Executing JMP ADR 21
+  control_unit_logger - INFO - STACK MEMORY - []
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 44 | Command pointer 20 
+  control_unit_logger - INFO - INCRUCTIONS - Executing PUSH VALUE 0
+  control_unit_logger - INFO - STACK MEMORY - [5]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 45 | Command pointer 21 
+  control_unit_logger - INFO - ALU - Executing ADD 5 and 1 | ALU result=6 | zero=False | result=False
+  control_unit_logger - INFO - INCRUCTIONS - Executing INCR
+  control_unit_logger - INFO - STACK MEMORY - [6]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 46 | Command pointer 22 
+  control_unit_logger - INFO - INCRUCTIONS - Executing PADR ADR 6
+  control_unit_logger - INFO - STACK MEMORY - [6, 108]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 47 | Command pointer 23 
+  control_unit_logger - INFO - INCRUCTIONS - Executing PRINT VALUE l
+  control_unit_logger - INFO - STACK MEMORY - [6]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 48 | Command pointer 24 
+  control_unit_logger - INFO - INCRUCTIONS - Executing PUSH VALUE 1
+  control_unit_logger - INFO - STACK MEMORY - [6, 2]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 49 | Command pointer 25 
+  control_unit_logger - INFO - ALU - Executing ADD 2 and 1 | ALU result=3 | zero=False | result=False
+  control_unit_logger - INFO - INCRUCTIONS - Executing INCR
+  control_unit_logger - INFO - STACK MEMORY - [6, 3]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 50 | Command pointer 26 
+  control_unit_logger - INFO - INCRUCTIONS - Executing PUSH VALUE 3
+  control_unit_logger - INFO - STACK MEMORY - [6, 3, 12]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 51 | Command pointer 27 
+  control_unit_logger - INFO - ALU - Executing COMPARE != 3 and 12 | ALU result=1 | zero=False | result=False
+  control_unit_logger - INFO - INCRUCTIONS - Executing JNE ADR 30
+  control_unit_logger - INFO - STACK MEMORY - [6, 3, 12]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 52 | Command pointer 29 
+  control_unit_logger - INFO - INCRUCTIONS - Executing POP
+  control_unit_logger - INFO - STACK MEMORY - [6, 3]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 53 | Command pointer 30 
+  control_unit_logger - INFO - INCRUCTIONS - Executing LOAD ADR 1
+  control_unit_logger - INFO - STACK MEMORY - [6]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 54 | Command pointer 31 
+  control_unit_logger - INFO - INCRUCTIONS - Executing LOAD ADR 0
+  control_unit_logger - INFO - STACK MEMORY - []
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 55 | Command pointer 32 
+  control_unit_logger - INFO - INCRUCTIONS - Executing JMP ADR 21
+  control_unit_logger - INFO - STACK MEMORY - []
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 56 | Command pointer 20 
+  control_unit_logger - INFO - INCRUCTIONS - Executing PUSH VALUE 0
+  control_unit_logger - INFO - STACK MEMORY - [6]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 57 | Command pointer 21 
+  control_unit_logger - INFO - ALU - Executing ADD 6 and 1 | ALU result=7 | zero=False | result=False
+  control_unit_logger - INFO - INCRUCTIONS - Executing INCR
+  control_unit_logger - INFO - STACK MEMORY - [7]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 58 | Command pointer 22 
+  control_unit_logger - INFO - INCRUCTIONS - Executing PADR ADR 7
+  control_unit_logger - INFO - STACK MEMORY - [7, 108]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 59 | Command pointer 23 
+  control_unit_logger - INFO - INCRUCTIONS - Executing PRINT VALUE l
+  control_unit_logger - INFO - STACK MEMORY - [7]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 60 | Command pointer 24 
+  control_unit_logger - INFO - INCRUCTIONS - Executing PUSH VALUE 1
+  control_unit_logger - INFO - STACK MEMORY - [7, 3]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 61 | Command pointer 25 
+  control_unit_logger - INFO - ALU - Executing ADD 3 and 1 | ALU result=4 | zero=False | result=False
+  control_unit_logger - INFO - INCRUCTIONS - Executing INCR
+  control_unit_logger - INFO - STACK MEMORY - [7, 4]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 62 | Command pointer 26 
+  control_unit_logger - INFO - INCRUCTIONS - Executing PUSH VALUE 3
+  control_unit_logger - INFO - STACK MEMORY - [7, 4, 12]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 63 | Command pointer 27 
+  control_unit_logger - INFO - ALU - Executing COMPARE != 4 and 12 | ALU result=1 | zero=False | result=False
+  control_unit_logger - INFO - INCRUCTIONS - Executing JNE ADR 30
+  control_unit_logger - INFO - STACK MEMORY - [7, 4, 12]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 64 | Command pointer 29 
+  control_unit_logger - INFO - INCRUCTIONS - Executing POP
+  control_unit_logger - INFO - STACK MEMORY - [7, 4]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 65 | Command pointer 30 
+  control_unit_logger - INFO - INCRUCTIONS - Executing LOAD ADR 1
+  control_unit_logger - INFO - STACK MEMORY - [7]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 66 | Command pointer 31 
+  control_unit_logger - INFO - INCRUCTIONS - Executing LOAD ADR 0
+  control_unit_logger - INFO - STACK MEMORY - []
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 67 | Command pointer 32 
+  control_unit_logger - INFO - INCRUCTIONS - Executing JMP ADR 21
+  control_unit_logger - INFO - STACK MEMORY - []
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 68 | Command pointer 20 
+  control_unit_logger - INFO - INCRUCTIONS - Executing PUSH VALUE 0
+  control_unit_logger - INFO - STACK MEMORY - [7]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 69 | Command pointer 21 
+  control_unit_logger - INFO - ALU - Executing ADD 7 and 1 | ALU result=8 | zero=False | result=False
+  control_unit_logger - INFO - INCRUCTIONS - Executing INCR
+  control_unit_logger - INFO - STACK MEMORY - [8]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 70 | Command pointer 22 
+  control_unit_logger - INFO - INCRUCTIONS - Executing PADR ADR 8
+  control_unit_logger - INFO - STACK MEMORY - [8, 111]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 71 | Command pointer 23 
+  control_unit_logger - INFO - INCRUCTIONS - Executing PRINT VALUE o
+  control_unit_logger - INFO - STACK MEMORY - [8]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 72 | Command pointer 24 
+  control_unit_logger - INFO - INCRUCTIONS - Executing PUSH VALUE 1
+  control_unit_logger - INFO - STACK MEMORY - [8, 4]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 73 | Command pointer 25 
+  control_unit_logger - INFO - ALU - Executing ADD 4 and 1 | ALU result=5 | zero=False | result=False
+  control_unit_logger - INFO - INCRUCTIONS - Executing INCR
+  control_unit_logger - INFO - STACK MEMORY - [8, 5]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 74 | Command pointer 26 
+  control_unit_logger - INFO - INCRUCTIONS - Executing PUSH VALUE 3
+  control_unit_logger - INFO - STACK MEMORY - [8, 5, 12]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 75 | Command pointer 27 
+  control_unit_logger - INFO - ALU - Executing COMPARE != 5 and 12 | ALU result=1 | zero=False | result=False
+  control_unit_logger - INFO - INCRUCTIONS - Executing JNE ADR 30
+  control_unit_logger - INFO - STACK MEMORY - [8, 5, 12]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 76 | Command pointer 29 
+  control_unit_logger - INFO - INCRUCTIONS - Executing POP
+  control_unit_logger - INFO - STACK MEMORY - [8, 5]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 77 | Command pointer 30 
+  control_unit_logger - INFO - INCRUCTIONS - Executing LOAD ADR 1
+  control_unit_logger - INFO - STACK MEMORY - [8]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 78 | Command pointer 31 
+  control_unit_logger - INFO - INCRUCTIONS - Executing LOAD ADR 0
+  control_unit_logger - INFO - STACK MEMORY - []
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 79 | Command pointer 32 
+  control_unit_logger - INFO - INCRUCTIONS - Executing JMP ADR 21
+  control_unit_logger - INFO - STACK MEMORY - []
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 80 | Command pointer 20 
+  control_unit_logger - INFO - INCRUCTIONS - Executing PUSH VALUE 0
+  control_unit_logger - INFO - STACK MEMORY - [8]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 81 | Command pointer 21 
+  control_unit_logger - INFO - ALU - Executing ADD 8 and 1 | ALU result=9 | zero=False | result=False
+  control_unit_logger - INFO - INCRUCTIONS - Executing INCR
+  control_unit_logger - INFO - STACK MEMORY - [9]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 82 | Command pointer 22 
+  control_unit_logger - INFO - INCRUCTIONS - Executing PADR ADR 9
+  control_unit_logger - INFO - STACK MEMORY - [9, 32]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 83 | Command pointer 23 
+  control_unit_logger - INFO - INCRUCTIONS - Executing PRINT VALUE  
+  control_unit_logger - INFO - STACK MEMORY - [9]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 84 | Command pointer 24 
+  control_unit_logger - INFO - INCRUCTIONS - Executing PUSH VALUE 1
+  control_unit_logger - INFO - STACK MEMORY - [9, 5]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 85 | Command pointer 25 
+  control_unit_logger - INFO - ALU - Executing ADD 5 and 1 | ALU result=6 | zero=False | result=False
+  control_unit_logger - INFO - INCRUCTIONS - Executing INCR
+  control_unit_logger - INFO - STACK MEMORY - [9, 6]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 86 | Command pointer 26 
+  control_unit_logger - INFO - INCRUCTIONS - Executing PUSH VALUE 3
+  control_unit_logger - INFO - STACK MEMORY - [9, 6, 12]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 87 | Command pointer 27 
+  control_unit_logger - INFO - ALU - Executing COMPARE != 6 and 12 | ALU result=1 | zero=False | result=False
+  control_unit_logger - INFO - INCRUCTIONS - Executing JNE ADR 30
+  control_unit_logger - INFO - STACK MEMORY - [9, 6, 12]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 88 | Command pointer 29 
+  control_unit_logger - INFO - INCRUCTIONS - Executing POP
+  control_unit_logger - INFO - STACK MEMORY - [9, 6]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 89 | Command pointer 30 
+  control_unit_logger - INFO - INCRUCTIONS - Executing LOAD ADR 1
+  control_unit_logger - INFO - STACK MEMORY - [9]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 90 | Command pointer 31 
+  control_unit_logger - INFO - INCRUCTIONS - Executing LOAD ADR 0
+  control_unit_logger - INFO - STACK MEMORY - []
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 91 | Command pointer 32 
+  control_unit_logger - INFO - INCRUCTIONS - Executing JMP ADR 21
+  control_unit_logger - INFO - STACK MEMORY - []
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 92 | Command pointer 20 
+  control_unit_logger - INFO - INCRUCTIONS - Executing PUSH VALUE 0
+  control_unit_logger - INFO - STACK MEMORY - [9]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 93 | Command pointer 21 
+  control_unit_logger - INFO - ALU - Executing ADD 9 and 1 | ALU result=10 | zero=False | result=False
+  control_unit_logger - INFO - INCRUCTIONS - Executing INCR
+  control_unit_logger - INFO - STACK MEMORY - [10]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 94 | Command pointer 22 
+  control_unit_logger - INFO - INCRUCTIONS - Executing PADR ADR 10
+  control_unit_logger - INFO - STACK MEMORY - [10, 119]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 95 | Command pointer 23 
+  control_unit_logger - INFO - INCRUCTIONS - Executing PRINT VALUE w
+  control_unit_logger - INFO - STACK MEMORY - [10]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 96 | Command pointer 24 
+  control_unit_logger - INFO - INCRUCTIONS - Executing PUSH VALUE 1
+  control_unit_logger - INFO - STACK MEMORY - [10, 6]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 97 | Command pointer 25 
+  control_unit_logger - INFO - ALU - Executing ADD 6 and 1 | ALU result=7 | zero=False | result=False
+  control_unit_logger - INFO - INCRUCTIONS - Executing INCR
+  control_unit_logger - INFO - STACK MEMORY - [10, 7]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 98 | Command pointer 26 
+  control_unit_logger - INFO - INCRUCTIONS - Executing PUSH VALUE 3
+  control_unit_logger - INFO - STACK MEMORY - [10, 7, 12]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 99 | Command pointer 27 
+  control_unit_logger - INFO - ALU - Executing COMPARE != 7 and 12 | ALU result=1 | zero=False | result=False
+  control_unit_logger - INFO - INCRUCTIONS - Executing JNE ADR 30
+  control_unit_logger - INFO - STACK MEMORY - [10, 7, 12]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 100 | Command pointer 29 
+  control_unit_logger - INFO - INCRUCTIONS - Executing POP
+  control_unit_logger - INFO - STACK MEMORY - [10, 7]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 101 | Command pointer 30 
+  control_unit_logger - INFO - INCRUCTIONS - Executing LOAD ADR 1
+  control_unit_logger - INFO - STACK MEMORY - [10]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 102 | Command pointer 31 
+  control_unit_logger - INFO - INCRUCTIONS - Executing LOAD ADR 0
+  control_unit_logger - INFO - STACK MEMORY - []
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 103 | Command pointer 32 
+  control_unit_logger - INFO - INCRUCTIONS - Executing JMP ADR 21
+  control_unit_logger - INFO - STACK MEMORY - []
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 104 | Command pointer 20 
+  control_unit_logger - INFO - INCRUCTIONS - Executing PUSH VALUE 0
+  control_unit_logger - INFO - STACK MEMORY - [10]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 105 | Command pointer 21 
+  control_unit_logger - INFO - ALU - Executing ADD 10 and 1 | ALU result=11 | zero=False | result=False
+  control_unit_logger - INFO - INCRUCTIONS - Executing INCR
+  control_unit_logger - INFO - STACK MEMORY - [11]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 106 | Command pointer 22 
+  control_unit_logger - INFO - INCRUCTIONS - Executing PADR ADR 11
+  control_unit_logger - INFO - STACK MEMORY - [11, 111]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 107 | Command pointer 23 
+  control_unit_logger - INFO - INCRUCTIONS - Executing PRINT VALUE o
+  control_unit_logger - INFO - STACK MEMORY - [11]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 108 | Command pointer 24 
+  control_unit_logger - INFO - INCRUCTIONS - Executing PUSH VALUE 1
+  control_unit_logger - INFO - STACK MEMORY - [11, 7]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 109 | Command pointer 25 
+  control_unit_logger - INFO - ALU - Executing ADD 7 and 1 | ALU result=8 | zero=False | result=False
+  control_unit_logger - INFO - INCRUCTIONS - Executing INCR
+  control_unit_logger - INFO - STACK MEMORY - [11, 8]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 110 | Command pointer 26 
+  control_unit_logger - INFO - INCRUCTIONS - Executing PUSH VALUE 3
+  control_unit_logger - INFO - STACK MEMORY - [11, 8, 12]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 111 | Command pointer 27 
+  control_unit_logger - INFO - ALU - Executing COMPARE != 8 and 12 | ALU result=1 | zero=False | result=False
+  control_unit_logger - INFO - INCRUCTIONS - Executing JNE ADR 30
+  control_unit_logger - INFO - STACK MEMORY - [11, 8, 12]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 112 | Command pointer 29 
+  control_unit_logger - INFO - INCRUCTIONS - Executing POP
+  control_unit_logger - INFO - STACK MEMORY - [11, 8]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 113 | Command pointer 30 
+  control_unit_logger - INFO - INCRUCTIONS - Executing LOAD ADR 1
+  control_unit_logger - INFO - STACK MEMORY - [11]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 114 | Command pointer 31 
+  control_unit_logger - INFO - INCRUCTIONS - Executing LOAD ADR 0
+  control_unit_logger - INFO - STACK MEMORY - []
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 115 | Command pointer 32 
+  control_unit_logger - INFO - INCRUCTIONS - Executing JMP ADR 21
+  control_unit_logger - INFO - STACK MEMORY - []
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 116 | Command pointer 20 
+  control_unit_logger - INFO - INCRUCTIONS - Executing PUSH VALUE 0
+  control_unit_logger - INFO - STACK MEMORY - [11]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 117 | Command pointer 21 
+  control_unit_logger - INFO - ALU - Executing ADD 11 and 1 | ALU result=12 | zero=False | result=False
+  control_unit_logger - INFO - INCRUCTIONS - Executing INCR
+  control_unit_logger - INFO - STACK MEMORY - [12]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 118 | Command pointer 22 
+  control_unit_logger - INFO - INCRUCTIONS - Executing PADR ADR 12
+  control_unit_logger - INFO - STACK MEMORY - [12, 114]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 119 | Command pointer 23 
+  control_unit_logger - INFO - INCRUCTIONS - Executing PRINT VALUE r
+  control_unit_logger - INFO - STACK MEMORY - [12]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 120 | Command pointer 24 
+  control_unit_logger - INFO - INCRUCTIONS - Executing PUSH VALUE 1
+  control_unit_logger - INFO - STACK MEMORY - [12, 8]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 121 | Command pointer 25 
+  control_unit_logger - INFO - ALU - Executing ADD 8 and 1 | ALU result=9 | zero=False | result=False
+  control_unit_logger - INFO - INCRUCTIONS - Executing INCR
+  control_unit_logger - INFO - STACK MEMORY - [12, 9]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 122 | Command pointer 26 
+  control_unit_logger - INFO - INCRUCTIONS - Executing PUSH VALUE 3
+  control_unit_logger - INFO - STACK MEMORY - [12, 9, 12]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 123 | Command pointer 27 
+  control_unit_logger - INFO - ALU - Executing COMPARE != 9 and 12 | ALU result=1 | zero=False | result=False
+  control_unit_logger - INFO - INCRUCTIONS - Executing JNE ADR 30
+  control_unit_logger - INFO - STACK MEMORY - [12, 9, 12]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 124 | Command pointer 29 
+  control_unit_logger - INFO - INCRUCTIONS - Executing POP
+  control_unit_logger - INFO - STACK MEMORY - [12, 9]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 125 | Command pointer 30 
+  control_unit_logger - INFO - INCRUCTIONS - Executing LOAD ADR 1
+  control_unit_logger - INFO - STACK MEMORY - [12]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 126 | Command pointer 31 
+  control_unit_logger - INFO - INCRUCTIONS - Executing LOAD ADR 0
+  control_unit_logger - INFO - STACK MEMORY - []
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 127 | Command pointer 32 
+  control_unit_logger - INFO - INCRUCTIONS - Executing JMP ADR 21
+  control_unit_logger - INFO - STACK MEMORY - []
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 128 | Command pointer 20 
+  control_unit_logger - INFO - INCRUCTIONS - Executing PUSH VALUE 0
+  control_unit_logger - INFO - STACK MEMORY - [12]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 129 | Command pointer 21 
+  control_unit_logger - INFO - ALU - Executing ADD 12 and 1 | ALU result=13 | zero=False | result=False
+  control_unit_logger - INFO - INCRUCTIONS - Executing INCR
+  control_unit_logger - INFO - STACK MEMORY - [13]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 130 | Command pointer 22 
+  control_unit_logger - INFO - INCRUCTIONS - Executing PADR ADR 13
+  control_unit_logger - INFO - STACK MEMORY - [13, 108]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 131 | Command pointer 23 
+  control_unit_logger - INFO - INCRUCTIONS - Executing PRINT VALUE l
+  control_unit_logger - INFO - STACK MEMORY - [13]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 132 | Command pointer 24 
+  control_unit_logger - INFO - INCRUCTIONS - Executing PUSH VALUE 1
+  control_unit_logger - INFO - STACK MEMORY - [13, 9]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 133 | Command pointer 25 
+  control_unit_logger - INFO - ALU - Executing ADD 9 and 1 | ALU result=10 | zero=False | result=False
+  control_unit_logger - INFO - INCRUCTIONS - Executing INCR
+  control_unit_logger - INFO - STACK MEMORY - [13, 10]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 134 | Command pointer 26 
+  control_unit_logger - INFO - INCRUCTIONS - Executing PUSH VALUE 3
+  control_unit_logger - INFO - STACK MEMORY - [13, 10, 12]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 135 | Command pointer 27 
+  control_unit_logger - INFO - ALU - Executing COMPARE != 10 and 12 | ALU result=1 | zero=False | result=False
+  control_unit_logger - INFO - INCRUCTIONS - Executing JNE ADR 30
+  control_unit_logger - INFO - STACK MEMORY - [13, 10, 12]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 136 | Command pointer 29 
+  control_unit_logger - INFO - INCRUCTIONS - Executing POP
+  control_unit_logger - INFO - STACK MEMORY - [13, 10]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 137 | Command pointer 30 
+  control_unit_logger - INFO - INCRUCTIONS - Executing LOAD ADR 1
+  control_unit_logger - INFO - STACK MEMORY - [13]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 138 | Command pointer 31 
+  control_unit_logger - INFO - INCRUCTIONS - Executing LOAD ADR 0
+  control_unit_logger - INFO - STACK MEMORY - []
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 139 | Command pointer 32 
+  control_unit_logger - INFO - INCRUCTIONS - Executing JMP ADR 21
+  control_unit_logger - INFO - STACK MEMORY - []
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 140 | Command pointer 20 
+  control_unit_logger - INFO - INCRUCTIONS - Executing PUSH VALUE 0
+  control_unit_logger - INFO - STACK MEMORY - [13]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 141 | Command pointer 21 
+  control_unit_logger - INFO - ALU - Executing ADD 13 and 1 | ALU result=14 | zero=False | result=False
+  control_unit_logger - INFO - INCRUCTIONS - Executing INCR
+  control_unit_logger - INFO - STACK MEMORY - [14]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 142 | Command pointer 22 
+  control_unit_logger - INFO - INCRUCTIONS - Executing PADR ADR 14
+  control_unit_logger - INFO - STACK MEMORY - [14, 100]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 143 | Command pointer 23 
+  control_unit_logger - INFO - INCRUCTIONS - Executing PRINT VALUE d
+  control_unit_logger - INFO - STACK MEMORY - [14]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 144 | Command pointer 24 
+  control_unit_logger - INFO - INCRUCTIONS - Executing PUSH VALUE 1
+  control_unit_logger - INFO - STACK MEMORY - [14, 10]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 145 | Command pointer 25 
+  control_unit_logger - INFO - ALU - Executing ADD 10 and 1 | ALU result=11 | zero=False | result=False
+  control_unit_logger - INFO - INCRUCTIONS - Executing INCR
+  control_unit_logger - INFO - STACK MEMORY - [14, 11]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 146 | Command pointer 26 
+  control_unit_logger - INFO - INCRUCTIONS - Executing PUSH VALUE 3
+  control_unit_logger - INFO - STACK MEMORY - [14, 11, 12]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 147 | Command pointer 27 
+  control_unit_logger - INFO - ALU - Executing COMPARE != 11 and 12 | ALU result=1 | zero=False | result=False
+  control_unit_logger - INFO - INCRUCTIONS - Executing JNE ADR 30
+  control_unit_logger - INFO - STACK MEMORY - [14, 11, 12]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 148 | Command pointer 29 
+  control_unit_logger - INFO - INCRUCTIONS - Executing POP
+  control_unit_logger - INFO - STACK MEMORY - [14, 11]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 149 | Command pointer 30 
+  control_unit_logger - INFO - INCRUCTIONS - Executing LOAD ADR 1
+  control_unit_logger - INFO - STACK MEMORY - [14]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 150 | Command pointer 31 
+  control_unit_logger - INFO - INCRUCTIONS - Executing LOAD ADR 0
+  control_unit_logger - INFO - STACK MEMORY - []
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 151 | Command pointer 32 
+  control_unit_logger - INFO - INCRUCTIONS - Executing JMP ADR 21
+  control_unit_logger - INFO - STACK MEMORY - []
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 152 | Command pointer 20 
+  control_unit_logger - INFO - INCRUCTIONS - Executing PUSH VALUE 0
+  control_unit_logger - INFO - STACK MEMORY - [14]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 153 | Command pointer 21 
+  control_unit_logger - INFO - ALU - Executing ADD 14 and 1 | ALU result=15 | zero=False | result=False
+  control_unit_logger - INFO - INCRUCTIONS - Executing INCR
+  control_unit_logger - INFO - STACK MEMORY - [15]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 154 | Command pointer 22 
+  control_unit_logger - INFO - INCRUCTIONS - Executing PADR ADR 15
+  control_unit_logger - INFO - STACK MEMORY - [15, 33]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 155 | Command pointer 23 
+  control_unit_logger - INFO - INCRUCTIONS - Executing PRINT VALUE !
+  control_unit_logger - INFO - STACK MEMORY - [15]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 156 | Command pointer 24 
+  control_unit_logger - INFO - INCRUCTIONS - Executing PUSH VALUE 1
+  control_unit_logger - INFO - STACK MEMORY - [15, 11]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 157 | Command pointer 25 
+  control_unit_logger - INFO - ALU - Executing ADD 11 and 1 | ALU result=12 | zero=False | result=False
+  control_unit_logger - INFO - INCRUCTIONS - Executing INCR
+  control_unit_logger - INFO - STACK MEMORY - [15, 12]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 158 | Command pointer 26 
+  control_unit_logger - INFO - INCRUCTIONS - Executing PUSH VALUE 3
+  control_unit_logger - INFO - STACK MEMORY - [15, 12, 12]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 159 | Command pointer 27 
+  control_unit_logger - INFO - ALU - Executing COMPARE != 12 and 12 | ALU result=0 | zero=False | result=False
+  control_unit_logger - INFO - INCRUCTIONS - Executing JNE ADR 30
+  control_unit_logger - INFO - STACK MEMORY - [15, 12, 12]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 160 | Command pointer 28 
+  control_unit_logger - INFO - ALU - Executing COMPARE == 12 and 12 | ALU result=1 | zero=False | result=False
+  control_unit_logger - INFO - INCRUCTIONS - Executing JEQ ADR 34
+  control_unit_logger - INFO - STACK MEMORY - [15, 12, 12]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 161 | Command pointer 33 
+  control_unit_logger - INFO - INCRUCTIONS - Executing HLT
+  control_unit_logger - INFO - STACK MEMORY - [15, 12, 12]
+  control_unit_logger - INFO - CONTROL UNIT - Count of instructions 162 | Command pointer 34 
