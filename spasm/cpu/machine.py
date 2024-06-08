@@ -1,4 +1,5 @@
 import logging
+import sys
 from datetime import datetime
 
 from structures_of_data.memory import Memory
@@ -38,3 +39,26 @@ class Machine:
     def run(self):
         self.CU.process()
         self.CU.instruction_memory=[]
+
+def read_machine_code(file_path: str) -> list:
+    machine_code = []
+    with open(file_path) as file:
+        for line in file:
+            parts = line.strip().split(",")
+            instruction = [parts[0].strip(), int(parts[1].strip()), int(parts[2].strip())]
+            machine_code.append(instruction)
+    return machine_code
+
+
+if __name__ == "__main__":
+    if len(sys.argv) != 3:
+        print("Usage: python machine.py <machine_code_file> <input_file>")
+        sys.exit(1)
+
+    machine_code_file = sys.argv[1]
+    input_file = sys.argv[2]
+
+    machine = Machine()
+    machine_code = read_machine_code(machine_code_file)
+    machine.configurate(machine_code, input_file)
+    machine.run()
