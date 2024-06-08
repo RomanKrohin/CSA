@@ -146,3 +146,15 @@ var_or_number       ::= value | name_of_variable
 
 ## Транслятор
 
+```python parser.py <source_filepath> <targer_filepath>```
+
+[parser.py](spasm/translate/parser.py)
+
+Подход:
+
+- Построчно читает исходный файл
+- Очищает исходный код от комментариев
+- Разбивает обработку на две секции: ```_data``` и ```_programme```
+- Парсит лейбы, перменныые и инсрукции
+- Базово проверяет синтаксис
+- Траслирует код в набор простых команд и группирует их в список списков ```[[opcode_1, operand_11, operand_12], [opcode_2, operand_21, operand_22], ...]```
