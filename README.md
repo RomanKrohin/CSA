@@ -162,7 +162,7 @@ var_or_number       ::= value | name_of_variable
 ## Модель процессора
 
 ```
-python machine.py <bin_filepath> <input_filepath> <output_filepath> <log_filepath>
+python machine.py <machine_code_file> <input_file>
 ```
 
 ### Control Unit
@@ -170,6 +170,40 @@ python machine.py <bin_filepath> <input_filepath> <output_filepath> <log_filepat
 
 ### Data path
 ![Datapath.drawio.svg](scheme/Datapath.drawio.svg)
+
+### Примечание
+
+- Процесс моделирууется с отслеживанием по инструкции
+- Остановка программы происходит по выполнении команды ```hlt``` или при ошибки (переполнение стека или неправильное использование меток)
+- Доступ к памяти инструкций осуществляется по специальному регистриу - command pointer
+- Предусмотрены разлиные флаги АЛУ:
+    1. ```Z``` (zero)- устанавливается когда результат последней арифметической операции равен 0
+    2. ```N``` (negative) - устанавливается когда результат последней арфиметической операции отрицателен 
+
+#### Стоимость команд в тактах:
+
+| Инструкция | Количество тактов |
+|:----------:|:-----------------:|
+|    push    |      1 или 2      |
+|push_by_adr |         2         |
+|    pop     |         2         |
+|    read    |         1         |
+|    jump    |         1         |
+|    jla     |      5 или 6      |
+|    jle     |      5 или 6      |
+|    jeq     |      5 или 6      |
+|    jne     |      5 или 6      |
+|    add     |         6         |
+|    sub     |         6         |
+|    mul     |         6         |
+|    div     |         6         |
+|    inc     |         3         |
+|    dec     |         3         |
+|   print    |         1         |
+|    mod     |         2         |
+|load_by_adr |         6         |
+|    load    |         2         |
+|    halt    |         1         |
 
 ## Тестирование
 
@@ -250,3 +284,12 @@ golden_test.py::test_machine_cat[golden/hello_world.yml] PASSED [100%]
 
 ========================= 4 passed in 15.10s =========================
 ```
+
+## Статистика
+
+|    Тест     | Инструкций |  Исполнено  |    Такт    |
+|:-----------:|:----------:|:-----------:|:----------:|
+| hello world |     34     |     162     |    629     | 
+| hello user  |     115    |     472     |    1908    |
+|    prob1    |     36     |    17061    |   76162    |
+|     cat     |     9      |     36      |    144     |

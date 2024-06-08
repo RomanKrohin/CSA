@@ -56,7 +56,8 @@ def push(self, arg: []) -> str:
 
 
 def pop(self, arg: []) -> str:
-    self.stack_memory.pop()
+    if (self.stack_memory.size()>0):
+        self.stack_memory.pop()
     return "Executing POP"
 
 
