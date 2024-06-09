@@ -166,10 +166,10 @@ python machine.py <machine_code_file> <input_file>
 ```
 
 ### Control Unit
-![CU.drawio.svg](scheme/CU.drawio.svg)
+![CU.drawio(1).svg](scheme/CU.drawio(1).svg)
 
 ### Data path
-![Datapath.drawio.svg](scheme/Datapath.drawio.svg)
+![Datapath.drawio(1).svg](scheme/Datapath.drawio(1).svg)
 
 ### Примечание
 
