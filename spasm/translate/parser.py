@@ -123,7 +123,7 @@ def split_argument_command(command_argument: str) -> list:
 
 def validate_instruction_size(instruction: list) -> None:
     assert 0 <= instruction[1] < (1 << 8), "Command code exceeds 1 byte"
-    assert 0 <= instruction[2] < (1 << 48), "Operand value exceeds 6 bytes"
+    assert 0 <= instruction[2] < (1 << 40), "Operand value exceeds 5 bytes"
 
 def reset_globals() -> None:
     global variables, labels, labels_dyn, dynamic_names, machine_code

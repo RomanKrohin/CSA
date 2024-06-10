@@ -143,7 +143,7 @@ def print_symbol(self, arg: []) -> str:
         self.stack_memory.push(0)
         return f"Executing READ VALUE {0}"
     tmp = (ord(self.input_device.input_array[0]))
-    self.stack_memory.push(ord(self.input_device.input_array[0]))
+    self.stack_memory.push(tmp)
     self.input_device.input_array = self.input_device.input_array[1:]
     return f"Executing READ VALUE {tmp}"
 
